@@ -60,10 +60,9 @@ function AdminSignup() {
                         Sign Up
                         </button>
                     </div>
-                    <div className='flex reverse'>
-                        <label htmlFor="password" className="block text-sm font-medium text-main-blue"> Forgot Password? </label>
+                    <div className='flex end mt-[10px]'>
                         <input type="checkbox" />
-                            Forgot Password 
+                        <label htmlFor="password" className="block text-sm font-medium text-main-blue ml-[5px]"> Forgot Password? </label> 
                     </div>
                 </div>
 
