@@ -2,7 +2,9 @@ import React from 'react'
 
 function AdminSignup() {
   return (
-    <div>AdminSignup</div>
+    <div className='auth-container'>
+        
+    </div>
   )
 }
 
