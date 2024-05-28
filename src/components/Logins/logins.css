@@ -14,6 +14,6 @@ input {
   }
 input:focus {
     transform: scale(1.005);
-    box-shadow: 3px 3px 100px #969696,
-               -3px -3px 100px #ffffff;
+    box-shadow: 3px 3px 10px #969696,
+               -3px -3px 10px #ffffff;
   }
