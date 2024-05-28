@@ -2,9 +2,24 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.css",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'dm-sans': ['DM Sans', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
+        'playfair': ['Playfair Display', 'serif'],
+      },
+      colors: {
+       
+      },
+      boxShadow: {
+        'blue': '0 0 10px rgba(142, 219, 245, 0.966)',
+      },
+    },
   },
   plugins: [],
-}
+};
+
