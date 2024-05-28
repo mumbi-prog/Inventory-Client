@@ -3,3 +3,17 @@
     height: 560px;
     width: 400px;
 }
+input {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #ccc;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.03);
+    transition: 300ms ease-in-out;
+  }
+input:focus {
+    transform: scale(1.005);
+    box-shadow: 3px 3px 100px #969696,
+               -3px -3px 100px #ffffff;
+  }
