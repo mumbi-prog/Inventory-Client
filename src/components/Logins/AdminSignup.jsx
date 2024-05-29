@@ -52,9 +52,11 @@ function AdminSignup() {
                             </div>
                         </div>
                         <div className="mb-[20px] consfirm-pswd-field">
+                            <div className="relative">
                             <PasswordInput name="confirmPassword" title="Confirm Password" placeholder="Confirm Password" 
                                 className="passwords"
                                 value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} showPassword={showPassword} onTogglePassword={() => setShowPassword(!showPassword)} />
+                            </div>
                         </div>
                           
                        

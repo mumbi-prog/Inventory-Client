@@ -1,10 +1,10 @@
 import './App.css';
-import AdminSignup from './components/Logins/AdminSignup';
+import AdminLogin from './components/Logins/AdminLogin';
 
 function App() {
   return (
     <div>
-      <AdminSignup />
+      <AdminLogin />
     </div>
   );
   
