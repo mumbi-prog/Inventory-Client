@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { PiEyeClosed, PiEyeBold } from "react-icons/pi";
 //import bkg from '../../images/bkg.jpg'
 import './logins.css'
 // import {Link} from react-router-dom;
 
 function AdminSignup() {
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [showPassword, setShowPassword] = useState("");
+
 
   return (
     <div className='auth-container bg-gray-bkg h-screen flex justify-center items-center'>
@@ -40,20 +45,19 @@ function AdminSignup() {
                                 className="mt-3 p-2 w-full rounded-md bg-gray-bkg focus:outline-none" required 
                             />
                         </div>
-                        <div className="mb2 mb-[10px]">
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700"> Password </label>
-                            <input
-                                placeholder="Enter password" type="password" id="password" name="password"
-                                className="mt-3 p-2 w-full rounded-md bg-gray-bkg focus:outline-none" required 
-                            />
+                        <div className="mb-2 password-field">
+                            <div className="relative">
+                            <PasswordInput name="password" title="Password" placeholder="Password"
+                                value={password} onChange={(e) => setPassword(e.target.value)} showPassword={showPassword} onTogglePassword={() => setShowPassword(!showPassword)} />
+                            </div>
                         </div>
-                        <div className="mb2 mb-[10px]">
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700"> Confirm Password </label>
-                            <input
-                                placeholder="Confirm password" type="password" id="password" name="password"
-                                className="mt-3 p-2 w-full rounded-md bg-gray-bkg focus:outline-none" required 
-                            />
+                        <div className="mb-[20px] consfirm-pswd-field">
+                            <PasswordInput name="confirmPassword" title="Confirm Password" placeholder="Confirm Password" 
+                                className="passwords"
+                                value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} showPassword={showPassword} onTogglePassword={() => setShowPassword(!showPassword)} />
                         </div>
+                          
+                       
                     </form>
                     <div className="auth-button flex justify-center items-center">
                         <button className='create-account uppercase bg-other-blue text-white font-semibold px-4 py-2 rounded-md hover:bg-hover-blue w-full mt-1'>
@@ -69,7 +73,35 @@ function AdminSignup() {
             </div>
         </div>
     </div>
-  )
-}
+  );
+};
 
+const PasswordInput = ({ name, title, placeholder, value, onChange, showPassword, onTogglePassword }) => {
+    return (
+      <div className="mb-2">
+        <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+          {title}
+        </label>
+        <div className="flex items-center">
+          <input
+            type={showPassword ? "text" : "password"}
+            id={name}
+            name={name}
+            className="mt-1 p-2 w-full rounded-md  focus:outline-none"
+            placeholder={placeholder}
+            required
+            value={value}
+            onChange={onChange}
+          />
+          <button
+            type="button"
+            onClick={onTogglePassword}
+            className="absolute flex flex-end ml-[380px] text-gray-600 hover:text-gray-800"
+          >
+            {showPassword ? <PiEyeBold /> : <PiEyeClosed />}
+          </button>
+        </div>
+      </div>
+    );
+  }; 
 export default AdminSignup
