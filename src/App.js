@@ -1,11 +1,12 @@
 import './App.css';
 // import AdminLogin from './components/Logins/AdminLogin';
-import WelcomeAdmin from './components/Admin/WelcomeAdmin';
+// import WelcomeAdmin from './components/Admin/WelcomeAdmin';
+import Sidebar from './components/Admin/SideBar';
 
 function App() {
   return (
     <div>
-      <WelcomeAdmin />
+      <Sidebar />
     </div>
   );
   
