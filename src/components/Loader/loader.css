@@ -1,5 +1,7 @@
 .loader {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     --height-of-loader: 4px;
     --loader-color: #0071e2;
     width: 130px;
@@ -7,6 +9,8 @@
     border-radius: 30px;
     background-color: rgba(0,0,0,0.2);
     position: relative;
+    margin-top: 20%;
+    margin-left: 45%;
   }
   
   .loader::before {
