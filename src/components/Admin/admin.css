@@ -28,9 +28,6 @@ main{
     width: 100px;
     height: auto;
 }
-/* .logo-container h3{
-    margin-left: -10px;
-} */
 .menu-bars{
     display: flex;
     font-size: 15px;
@@ -69,4 +66,4 @@ main{
 
 .main-wrapper {
     display: flex; 
-  }
+}  
