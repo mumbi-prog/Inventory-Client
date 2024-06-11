@@ -3,7 +3,7 @@ import WelcomeAdmin from './WelcomeAdmin'
 
 function Dashboard() {
   return (
-    <div>
+    <div className='sect-container ml-[-200%] mt-[20px]'>
       <WelcomeAdmin />
       Dashboard
 
