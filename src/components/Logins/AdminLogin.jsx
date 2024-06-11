@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../Api/api.jsx'
 import { useNavigate, Link} from 'react-router-dom';
 import './logins.css';
 import { PiEyeClosed, PiEyeBold } from 'react-icons/pi';
@@ -15,7 +15,7 @@ function AdminLogin() {
     e.preventDefault();
 
     try {
-        await axios.post('http://localhost:3000/login', {
+        await api.post('http://localhost:3000/login', {
             email,
             password
         });

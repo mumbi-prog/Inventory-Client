@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { PiEyeClosed, PiEyeBold } from 'react-icons/pi';
-import axios from 'axios';
+import api from '../Api/api.jsx'
 import './logins.css';
 
 function AdminSignup() {
@@ -22,7 +22,7 @@ function AdminSignup() {
         }
 
         try {
-            await axios.post('http://localhost:3000/signup', {
+            await api.post('http://localhost:3000/signup', {
                admin: {
                 first_name: firstName,
                 last_name: lastName,

@@ -4,12 +4,12 @@ import { FiUsers } from "react-icons/fi";
 import { Link } from 'react-scroll';
 import logo from '../../images/logo.png';
 import '../Admin/admin.css'
-// import api from '../Api/api.jsx'
+import api from '../Api/api.jsx'
 import { TbLogout2 } from 'react-icons/tb';
 import { RxDashboard } from 'react-icons/rx';
 import { VscNewFile } from 'react-icons/vsc';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 function Sidebar({ children, setSelectedOption }) {
@@ -27,7 +27,7 @@ function Sidebar({ children, setSelectedOption }) {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.delete('http://localhost/logout');
+      const response = await api.delete('http://localhost/logout');
       if (response.status === 204) {
         // window.location.href = '/login'; 
         navigate('/login')
@@ -43,9 +43,11 @@ function Sidebar({ children, setSelectedOption }) {
     <div className={`main-container font-dm-sans h-full ${isOpen ? 'open' : ''}`}>
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="logo-container flex">
-          <img src={logo} alt="" className="logo" />
-          <h3 className="font-dm-sans text-lg mt-[1px]">InventoHub</h3>
-          <div className="menu-bars ml-[30px]" onClick={toggle}>
+          <div className="second-lc">
+              <img src={logo} alt="" className="logo" />
+              <h3 className="font-dm-sans">InventoHub</h3>
+          </div>
+          <div className="menu-bars" onClick={toggle}>
             <FaBars />
           </div>
         </div>

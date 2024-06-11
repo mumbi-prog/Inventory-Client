@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import api from '../Api/api.jsx'
+import api from '../Api/api.jsx'
 import '../Loader/loader.css'
-import axios from 'axios'
+// import axios from 'axios'
 
 
 const WelcomeAdmin = () => {
@@ -10,7 +10,7 @@ const WelcomeAdmin = () => {
   useEffect(() => {
     const fetchadminData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/mysession');
+        const response = await api.get('http://localhost:3000/mysession');
 
         if (response.status === 200) { 
           setadminData(response.data);
