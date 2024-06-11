@@ -1,8 +1,13 @@
 import React from 'react'
+import WelcomeAdmin from './WelcomeAdmin'
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div>
+      <WelcomeAdmin />
+      Dashboard
+
+    </div>
   )
 }
 
