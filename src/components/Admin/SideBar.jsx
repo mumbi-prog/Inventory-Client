@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
 import { FaBars } from 'react-icons/fa'; 
-import { MdOutlineDashboard } from "react-icons/md";
-import { BsBoxes } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
 import { Link } from 'react-scroll';
 import logo from '../../images/logo.png';
 import '../Admin/admin.css'
-import api from '../Api/api.jsx'
+// import api from '../Api/api.jsx'
 import { TbLogout2 } from 'react-icons/tb';
+import { RxDashboard } from 'react-icons/rx';
+import { VscNewFile } from 'react-icons/vsc';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 function Sidebar({ children, setSelectedOption }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+  const navigate = useNavigate();
 
   const navItem = [
-    { id: 'dashboard', name: 'Dashboard', icon: <MdOutlineDashboard /> },
-    { id: 'createProduct', name: 'Create Product', icon: <BsBoxes /> },
+    { id: 'dashboard', name: 'Dashboard', icon: <RxDashboard /> },
+    { id: 'createProduct', name: 'Create Product', icon: <VscNewFile /> },
     { id: 'myUsers', name: 'All Users', icon: <FiUsers /> },
     { id: 'adminLogout', name: 'Logout', icon: <TbLogout2 /> }
   ]
 
   const handleLogout = async () => {
     try {
-      const response = await api.delete('/logout');
+      const response = await axios.delete('http://localhost/logout');
       if (response.status === 204) {
-        window.location.href = '/login'; 
+        // window.location.href = '/login'; 
+        navigate('/login')
       } else {
         console.error('Failed, Try Again!!');
       }
