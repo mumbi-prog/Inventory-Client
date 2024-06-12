@@ -1,61 +1,81 @@
-import React, {useState, useEffect}from 'react'
-import WelcomeAdmin from './WelcomeAdmin'
-import api from '../Api/api'
+import React, { useState, useEffect } from 'react';
+import WelcomeAdmin from './WelcomeAdmin';
+import api from '../Api/api';
 
 function Dashboard() {
-  const [products, setProducts] = useState("")
+  const [products, setProducts] = useState([]);
+  const [userNames, setUserNames] = useState({});
 
   useEffect(() => {
-    const handleproductList = async() => {
+    const fetchData = async () => {
       try {
-        const response = await api.get("http://localhost:3000/products");
-        if (response === 200){
-          setProducts(response.data)
+        const productResponse = await api.get("http://localhost:3000/products");
+        if (productResponse.status === 202) {
+          setProducts(productResponse.data);
+          const userIds = productResponse.data.map(product => product.user_id);
+          const userNamesPromises = userIds.map(userId => fetchUserName(userId));
+          const userNamesArray = await Promise.all(userNamesPromises);
+          const userNamesMap = userIds.reduce((acc, userId, index) => {
+            acc[userId] = userNamesArray[index];
+            return acc;
+          }, {});
+          setUserNames(userNamesMap);
+        } else {
+          console.log("Can't fetch products", productResponse.status);
         }
-        else{
-          console.log("Can't fetch products", response.status)
-        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
       }
-      catch (error){
-        console.errors(error)
+    };
+
+    fetchData();
+  }, []);
+
+  const fetchUserName = async (userId) => {
+    try {
+      const response = await api.get(`http://localhost:3000/users/${userId}`);
+      if (response.status === 200) {
+        return `${response.data.first_name} ${response.data.last_name}`;
       }
-    }; 
-    handleproductList();
-  }, [])
+      return "Unknown User";
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+      return "Unknown User";
+    }
+  };
 
   return (
-    <div className='sect-container ml-[-100%] mt-[20px]'>
+    <div className='sect-container '>
       <WelcomeAdmin />
       <h1 className='comp-title text-main-blue-500 font-bold capitalize text-2xl'>Dashboard</h1>
       <table className="prod-container">
         <thead>
           <tr>
-            <th> Serial Number  </th>
-            <th> Category  </th>
-            <th> Name  </th>
-            <th> Unit Price  </th>
-            <th> Date Bought  </th>
-            <th> Status  </th>
-            <th> Assigned To:  </th>
+            <th> Serial Number </th>
+            <th> Category </th>
+            <th> Name </th>
+            <th> Unit Price </th>
+            <th> Date Bought </th>
+            <th> Status </th>
+            <th> Assigned To: </th>
           </tr>
         </thead>
         <tbody>
-            {products.map((products, index) =>(
-              <tr key={index}>
-                  <td>{products.serial_number}</td>
-                  <td>{products.category}</td>
-                  <td>{products.name}</td>
-                  <td>{products.unit_price}</td>
-                  <td>{products.date_bought}</td>
-                  <td>{products.status}</td>
-                  <td>{products.user_id}</td>
-              </tr>
-            )
-          )}
+          {products.map((product, index) => (
+            <tr key={index}>
+              <td>{product.serial_number}</td>
+              <td>{product.category}</td>
+              <td>{product.name}</td>
+              <td>{product.unit_price}</td>
+              <td>{product.date_bought}</td>
+              <td>{product.status}</td>
+              <td>{userNames[product.user_id]}</td> {/* Display user name from userNames state */}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

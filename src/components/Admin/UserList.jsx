@@ -1,71 +1,69 @@
-import React, { useEffect, useState } from 'react';
-import '../Loader/loader.css'
-import api from './../Api/api.jsx';
+import React, { useState } from 'react'; 
+import api from './../Api/api'; 
+import './admin.css'
 
-function UserList() {
-  const [users, setUsers] = useState([]);
+function CreateUser() {
+    const [userDeets, setUserDeets] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        department: ''
+    });
 
-  // useEffect(() => {
-  //   api.get('/users') 
-  //     .then((response) => response.data)
-  //     .then((data) => {
-  //       setUsers(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching user info:', error);
-  //     });
-  
-  // }, []);
-
-  useEffect(() => {
-    const handleUsers = async () => {
-      try{
-        const response = await api.get("http://localhost:3000/users");
-        if (response === 200) {
-          setUsers(response.data)
-        }
-        else{
-          console.log("Can't fetch Users, try again!!", response.status)
-        }
-      }
-      catch(error){
-        console.errors(error)
-      }
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setUserDeets({
+            ...userDeets,
+            [name]: value
+        });
     };
-    handleUsers();
-  }, [])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault(); 
+        try {
+            const response = await api.post("http://localhost:3000/users", userDeets);
+            if (response.status === 201) { 
+                console.log("User created successfully");
+                setUserDeets({
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    department: ''
+                });
+            } else {
+                console.log("Can't create User, try again later", response.status);
+            }
+        } catch (error) {
+            console.error(error); 
+        }
+    };
 
-  return (
-    <div className='sect-container ml-[-700%] mt-[20px]'>
-      <h1 className="comp-title text-main-blue-500 font-bold capitalize text-2xl"> All Users</h1>
+    return (
+        <div classname='sect-container'>
 
-      <div className="user-list-table-container rounded-md bg-gray-100 py-[20px] px-[50px] inline-block mt-[25px]">
-        <div className="user-list-table ">
-          <table>
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Department</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr key={index} className='border-l-4 border-transparent hover:border-blue-500 p-[20px] text-center'>
-                  <td>{user.first_name}</td>
-                  <td>{user.last_name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.department}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h1 className='comp-title '>Create New User</h1>
+
+            <form onSubmit={handleSubmit} className="user-details block">
+                <label htmlFor="first_name">First Name</label>
+                <input
+                    type="text" placeholder='First Name' name="first_name" value={userDeets.first_name}  onChange={handleInputChange}  required
+                />
+                <label htmlFor="last_name">Last Name</label> 
+                <input
+                    type="text" placeholder='Last Name' name="last_name" value={userDeets.last_name} onChange={handleInputChange} required
+                />
+                <label htmlFor="email">Email</label> 
+                <input
+                    type="email" placeholder='Email' name="email" value={userDeets.email} onChange={handleInputChange} required
+                />
+                <label htmlFor="department">Department</label>
+                <input
+                    type="text" placeholder='Department' name="department" value={userDeets.department} onChange={handleInputChange} required
+                />
+                <button type="submit">Create User</button>
+            </form>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
-export default UserList;
+export default CreateUser;

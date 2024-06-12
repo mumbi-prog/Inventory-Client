@@ -14,10 +14,10 @@ main{
 .sidebar {
     background-color: #032234;
     color: beige;
-    height: 100vh; 
-    left: 0; 
-    top: 0; 
-    width: 23%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    min-width: 200px;
 }
 .logo-container{
     display: flex;
@@ -78,3 +78,12 @@ main{
 .main-wrapper {
     display: flex; 
 }  
+
+/* CREATE USER */
+.sect-container{
+    margin-left: -1050px;
+}
+
+.comp-title{
+    color: pink;
+}
