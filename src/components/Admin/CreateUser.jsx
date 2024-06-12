@@ -39,7 +39,25 @@ function CreateUser() {
 
     return (
         <div>CreateUser
-           
+            <form onSubmit={handleSubmit} className="user-details">
+                <label htmlFor="first_name">First Name</label>
+                <input
+                    type="text" placeholder='First Name' name="first_name" value={userDeets.first_name}  onChange={handleInputChange}  required
+                />
+                <label htmlFor="last_name">Last Name</label> 
+                <input
+                    type="text" placeholder='Last Name' name="last_name" value={userDeets.last_name} onChange={handleInputChange} required
+                />
+                <label htmlFor="email">Email</label> 
+                <input
+                    type="email" placeholder='Email' name="email" value={userDeets.email} onChange={handleInputChange} required
+                />
+                <label htmlFor="department">Department</label>
+                <input
+                    type="text" placeholder='Department' name="department" value={userDeets.department} onChange={handleInputChange} required
+                />
+                <button type="submit">Create User</button>
+            </form>
         </div>
     );
 }
