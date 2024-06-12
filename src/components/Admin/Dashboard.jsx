@@ -24,7 +24,7 @@ function Dashboard() {
   }, [])
 
   return (
-    <div className='sect-container ml-[-800%] mt-[20px]'>
+    <div className='sect-container ml-[-100%] mt-[20px]'>
       <WelcomeAdmin />
       <h1 className='comp-title text-main-blue-500 font-bold capitalize text-2xl'>Dashboard</h1>
       <table className="prod-container">
