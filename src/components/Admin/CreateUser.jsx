@@ -9,6 +9,13 @@ function CreateUser() {
         department: ''
     });
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setUserDeets({
+            ...userDeets,
+            [name]: value
+        });
+    };
 
 
     return (
