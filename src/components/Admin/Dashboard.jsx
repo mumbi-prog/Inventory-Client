@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WelcomeAdmin from './WelcomeAdmin';
 import api from '../Api/api';
+import './comp-specific.css'
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -45,9 +46,9 @@ function Dashboard() {
   };
 
   return (
-    <div className='sect-container '>
+    <div className='sect-container mt-[20px]'>
       <WelcomeAdmin />
-      <h1 className='comp-title text-main-blue-500 font-bold capitalize text-2xl'>Dashboard</h1>
+      <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Dashboard</h1>
       <table className="prod-container">
         <thead>
           <tr>

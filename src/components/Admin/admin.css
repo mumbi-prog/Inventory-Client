@@ -8,7 +8,7 @@
     width: 280px;
 }
 main{
-    width: 100%;
+    width: 10%;
     padding: 20px;
 }
 .sidebar {
@@ -70,22 +70,10 @@ main{
     font-size: 15px;
     padding-left: 0;
 }
-
 .link:active {
     background: pink;
     color: #0bbd1d;
 }
-
-
 .main-wrapper {
     display: flex; 
 }  
-
-/* CREATE USER */
-/* .sect-container{
-    margin-left: -1050px;
-}
-
-.comp-title{
-    color: pink;
-} */
