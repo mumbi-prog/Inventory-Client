@@ -9,6 +9,7 @@ import { TbLogout2 } from 'react-icons/tb';
 import { RxDashboard } from 'react-icons/rx';
 import { VscNewFile } from 'react-icons/vsc';
 import { useNavigate } from 'react-router-dom';
+import { CgUserAdd } from 'react-icons/cg';
 // import axios from 'axios';
 
 
@@ -21,6 +22,7 @@ function Sidebar({ children, setSelectedOption }) {
   const navItem = [
     { id: 'dashboard', name: 'Dashboard', icon: <RxDashboard /> },
     { id: 'createProduct', name: 'Create Product', icon: <VscNewFile /> },
+    { id: 'createUser', name: 'Create User', icon: <CgUserAdd /> },
     { id: 'myUsers', name: 'All Users', icon: <FiUsers /> },
     { id: 'adminLogout', name: 'Logout', icon: <TbLogout2 /> }
   ]
