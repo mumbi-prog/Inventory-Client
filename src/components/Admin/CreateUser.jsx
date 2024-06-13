@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import api from './../Api/api'; 
+import './admin.css'
 
 function CreateUser() {
     const [userDeets, setUserDeets] = useState({
@@ -38,8 +39,11 @@ function CreateUser() {
     };
 
     return (
-        <div>CreateUser
-            <form onSubmit={handleSubmit} className="user-details">
+        <div classname='sect-container'>
+
+          <h1 className='comp-title '>Create New User</h1>
+
+            <form onSubmit={handleSubmit} className="user-details block">
                 <label htmlFor="first_name">First Name</label>
                 <input
                     type="text" placeholder='First Name' name="first_name" value={userDeets.first_name}  onChange={handleInputChange}  required
