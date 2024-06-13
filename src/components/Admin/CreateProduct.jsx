@@ -24,7 +24,15 @@ function CreateProduct() {
         try{
             const response = await api.post("http://localhost/3000/products", productDeets);
             if (response.status === 201){
-                setProductDeets(response.data);
+                console.log("Product created successfully!");
+                setProductDeets({
+                    serial_number: '',
+                    category: '',
+                    name: '',
+                    unit_price: '',
+                    date_bought: '',
+                    status: ''
+                });
             } else {
                 console.log("Could not create product.")
             }
