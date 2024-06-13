@@ -12,7 +12,11 @@ function CreateProduct() {
     })
 
     const handleInputChange = (e) => {
-
+        const {name, value} = e.target;
+        setProductDeets({
+            ...productDeets,
+            [name]: value
+        });
     }
 
     const handleSubmit = async (e) => {
@@ -31,7 +35,11 @@ function CreateProduct() {
     }
   return (
     <div>CreateProduct
-
+        <form onSubmit={handleSubmit} className="product-form">
+            <label htmlFor="serial_number">Serial Number</label>
+            <input type="text" placeholder='serial_number' name='serial_number' onChange={handleInputChange} required/>
+        
+        </form>
     </div>
   )
 }
