@@ -72,7 +72,7 @@ function Dashboard() {
               <td>{product.unit_price}</td>
               <td>{product.date_bought}</td>
               <td>{product.status}</td>
-              <td>{userNames[product.user_id]}</td> {/* Display user name from userNames state */}
+              <td>{userNames[product.user_id]}</td>
             </tr>
           ))}
         </tbody>
