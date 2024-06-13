@@ -5,7 +5,7 @@
 }
 .main-container{
     display: flex;
-    width: 100%;
+    width: 280px;
 }
 main{
     width: 100%;
@@ -17,7 +17,7 @@ main{
     height: 100vh;
     left: 0;
     top: 0;
-    min-width: 200px;
+    min-width: 250px;
 }
 .logo-container{
     display: flex;
@@ -29,15 +29,17 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: 30%;
+    margin-left: 30px;
 }
 .second-lc h3{
     margin-top: -10%;
-    font-size: 20px;
+    font-size: 30px;
+    /* margin-left: 20px; */
 }
 .logo{
-    width: 300px;
+    width: 100px;
     height: auto;
+
 }
 .menu-bars{
     display: flex;
@@ -69,7 +71,7 @@ main{
     padding-left: 0;
 }
 
-.link.active {
+.link:active {
     background: pink;
     color: #0bbd1d;
 }
@@ -80,10 +82,10 @@ main{
 }  
 
 /* CREATE USER */
-.sect-container{
+/* .sect-container{
     margin-left: -1050px;
 }
 
 .comp-title{
     color: pink;
-}
+} */
