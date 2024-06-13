@@ -49,7 +49,9 @@ function Dashboard() {
     <div className='sect-container mt-[20px]'>
       <WelcomeAdmin />
       <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Dashboard</h1>
-      <table className="prod-container">
+      <div className="products-table-container">
+        <div className="products-table">
+                  <table className="prod-container">
         <thead>
           <tr>
             <th> Serial Number </th>
@@ -75,6 +77,9 @@ function Dashboard() {
           ))}
         </tbody>
       </table>
+        </div>
+      </div>
+
     </div>
   );
 }
