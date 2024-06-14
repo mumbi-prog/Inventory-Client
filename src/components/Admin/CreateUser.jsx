@@ -39,9 +39,9 @@ function CreateUser() {
     };
 
     return (
-        <div classname='sect-container'>
+        <div classname='sect-container mt-[20px]'>
 
-          <h1 className='comp-title '>Create New User</h1>
+          <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Create New User</h1>
 
             <form className="user-details block">
                 <label htmlFor="first_name">First Name</label>
