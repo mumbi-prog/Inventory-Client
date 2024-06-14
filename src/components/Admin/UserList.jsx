@@ -10,6 +10,7 @@ function UserList() {
                 const response = await api.get("http://localhost:3000/users");
                 if (response.status === 200 ){
                     console.log("All users fetched successfully!!")
+                    setUserDetails(response.data);
                 } else {
                     console.log("Error fetching users", response.status)
                 }
@@ -36,7 +37,15 @@ function UserList() {
                         </tr>
                     </thead>
                     <tbody>
+                        {userDetails.map((user, index) => (
+                           <tr key={index}>
+                                <td>{user.first_name}</td>
+                                <td>{user.last_name}</td>
+                                <td>{user.email}</td>
+                                <td>{user.department}</td>
+                           </tr>
 
+                        ))}
                     </tbody>
                 </table>
             </div>
