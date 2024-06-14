@@ -43,7 +43,7 @@ function CreateUser() {
 
           <h1 className='comp-title '>Create New User</h1>
 
-            <form onSubmit={handleSubmit} className="user-details block">
+            <form className="user-details block">
                 <label htmlFor="first_name">First Name</label>
                 <input
                     type="text" placeholder='First Name' name="first_name" value={userDeets.first_name}  onChange={handleInputChange}  required
@@ -60,7 +60,7 @@ function CreateUser() {
                 <input
                     type="text" placeholder='Department' name="department" value={userDeets.department} onChange={handleInputChange} required
                 />
-                <button type="submit">Create User</button>
+                <button type="submit" onClick={handleSubmit}>Create User</button>
             </form>
         </div>
     );

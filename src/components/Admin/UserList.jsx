@@ -22,7 +22,9 @@ function UserList() {
         fetchUserList();
     }, [])
   return (
-    <div>UserList</div>
+    <div className='sect-container'>
+        <h1>All Users</h1>
+    </div>
   )
 }
 
