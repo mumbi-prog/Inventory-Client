@@ -55,7 +55,7 @@ main{
 .link {
     display: flex;
     color: white;
-    padding: 12px 35px;
+    padding: 12px 30ypx;
     gap: 15px;
     background-size: 200% 100%;
     background-position: 100%;
