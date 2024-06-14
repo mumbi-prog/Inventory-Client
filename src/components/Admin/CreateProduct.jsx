@@ -61,7 +61,8 @@ function CreateProduct() {
             <input type="date" placeholder='date' name='date' onChange={handleInputChange} required/>
         
              <label htmlFor="status">Status</label>
-            <input type="options"  name='status' onChange={handleInputChange} required/>
+            <input type="options"  name='Available' onChange={handleInputChange}/>
+            <input type="options" name='Assigned' onChange={handleInputChange}/>
         
             <button onSubmit={handleSubmit}>Submit</button>
         </form>

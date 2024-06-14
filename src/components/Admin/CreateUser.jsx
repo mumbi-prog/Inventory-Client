@@ -38,6 +38,25 @@ function CreateUser() {
         }
     };
 
+    // const updateUser = async(e) => {
+    //     e.preventDefault();
+    //     try{
+    //         const updateResponse = await api.patch("http://loalhost:3000/users/$users_id");
+    //         if (updateResponse.status === 202){
+    //             console.log("User updated successfully");
+    //             setUserDeets({
+    //                 first_name: '',
+    //                 last_name: '',
+    //                 email: '',
+    //                 department: ''
+    //             })
+    //         }
+    //     }
+    //     catch(error){
+    //         console.error(error);
+    //     }
+    // }
+
     return (
         <div classname='sect-container mt-[20px]'>
 
