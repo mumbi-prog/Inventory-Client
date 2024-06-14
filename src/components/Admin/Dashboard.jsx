@@ -54,13 +54,13 @@ function Dashboard() {
           <table className="prod-container">
             <thead>
               <tr>
-                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> S_Number </th>
-                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Category </th>
-                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Name </th>
-                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Unit Price </th>
-                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Date </th>
-                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Status </th>
-                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Assigned To: </th>
+                <th className="w-auto py-[-5px] px-[0px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> S_Number </th>
+                <th className="w-auto py-[-5px] px-[15px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Category </th>
+                <th className="w-auto py-[-5px] px-[45px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Name </th>
+                <th className="w-auto py-[-5px] px-[45px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Price </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Date </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Status </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Assigned To: </th>
               </tr>
             </thead>
             <tbody>
