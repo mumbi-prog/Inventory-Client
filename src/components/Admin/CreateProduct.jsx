@@ -44,7 +44,7 @@ function CreateProduct() {
   return (
     <div className='sect-container mt-[20px]'>
         <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'> Create Products</h1>
-        <form onSubmit={handleSubmit} className="product-form">
+        <form className="product-form">
             <label htmlFor="serial_number">Serial Number</label>
             <input type="text" placeholder='serial_number' name='serial_number' onChange={handleInputChange} required/>
         
@@ -63,7 +63,7 @@ function CreateProduct() {
              <label htmlFor="status">Status</label>
             <input type="options"  name='status' onChange={handleInputChange} required/>
         
-            <button>Submit</button>
+            <button onSubmit={handleSubmit}>Submit</button>
         </form>
     </div>
   )
