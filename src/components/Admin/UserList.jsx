@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import api from '../Api/api.jsx'
+import './comp-specific.css'
 
 function UserList() {
     const [userDetails, setUserDetails] = useState([]);
@@ -40,7 +41,7 @@ function UserList() {
                     </thead>
                     <tbody>
                         {userDetails.map((user, index) => (
-                           <tr key={index} className='border-l-4 border-r-4 border-transparent hover:border-blue-500 p-[20px] text-center'>
+                           <tr key={index} className=' row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-center hover:bg-blue-100'>
                                 <td className='py-[10px] px-[10px]'>{user.first_name}</td>
                                 <td className='py-[10px] px-[10px]'>{user.last_name}</td>
                                 <td className='py-[10px] px-[10px]'>{user.email}</td>

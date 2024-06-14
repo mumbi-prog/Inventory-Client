@@ -49,34 +49,34 @@ function Dashboard() {
     <div className='sect-container mt-[20px]'>
       <WelcomeAdmin />
       <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Dashboard</h1>
-      <div className="products-table-container">
-        <div className="products-table">
-                  <table className="prod-container">
-        <thead>
-          <tr>
-            <th> Serial Number </th>
-            <th> Category </th>
-            <th> Name </th>
-            <th> Unit Price </th>
-            <th> Date Bought </th>
-            <th> Status </th>
-            <th> Assigned To: </th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product, index) => (
-            <tr key={index}>
-              <td>{product.serial_number}</td>
-              <td>{product.category}</td>
-              <td>{product.name}</td>
-              <td>{product.unit_price}</td>
-              <td>{product.date_bought}</td>
-              <td>{product.status}</td>
-              <td>{userNames[product.user_id]}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="products-table-container rounded-md bg-gray-100 py-[20px] px-[20px] inline-block mt-[25px]">
+        <div className="products-table ">
+          <table className="prod-container">
+            <thead>
+              <tr>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> S_Number </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Category </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Name </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Unit Price </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Date </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Status </th>
+                <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px]"> Assigned To: </th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product, index) => (
+                <tr key={index} classname='border-l-4 border-transparent hover:border-blue-500 p-[20px] text-center hover:bg-blue-100'>
+                  <td className='py-[10px] px-[10px]'>{product.serial_number}</td>
+                  <td className='py-[10px] px-[10px]'>{product.category}</td>
+                  <td className='py-[10px] px-[10px]'>{product.name}</td>
+                  <td className='py-[10px] px-[10px]'>{product.unit_price}</td>
+                  <td className='py-[10px] px-[10px]'>{product.date_bought}</td>
+                  <td className='py-[10px] px-[10px]'>{product.status}</td>
+                  <td className='py-[10px] px-[10px]'>{userNames[product.user_id]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 

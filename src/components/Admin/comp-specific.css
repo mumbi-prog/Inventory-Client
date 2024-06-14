@@ -1,3 +1,12 @@
+/* USER COMPONENT */
+/* .row-detail {
+    transition: transform 0.3s ease;
+}
+.row-detail:hover {
+    transform: scale(1.03);
+    border-left: 4px;
+    border-color: green;
+} */
 .product-form{
     display: block;
 }
