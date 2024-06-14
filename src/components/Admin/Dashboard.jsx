@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import WelcomeAdmin from './WelcomeAdmin';
+// import WelcomeAdmin from './WelcomeAdmin';
 import api from '../Api/api';
 import './comp-specific.css'
 
@@ -47,7 +47,7 @@ function Dashboard() {
 
   return (
     <div className='sect-container mt-[20px]'>
-      <WelcomeAdmin />
+      {/* <WelcomeAdmin /> */}
       <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Dashboard</h1>
       <div className="products-table-container rounded-md bg-gray-100 py-[20px] px-[20px] inline-block mt-[25px]">
         <div className="products-table ">

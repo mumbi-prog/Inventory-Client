@@ -10,6 +10,7 @@ import { RxDashboard } from 'react-icons/rx';
 import { VscNewFile } from 'react-icons/vsc';
 import { useNavigate } from 'react-router-dom';
 import { CgUserAdd } from 'react-icons/cg';
+import WelcomeAdmin from './WelcomeAdmin.jsx'
 // import axios from 'axios';
 
 
@@ -46,8 +47,12 @@ function Sidebar({ children, setSelectedOption }) {
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="logo-container flex">
           <div className="second-lc">
-              <img src={logo} alt="" className="logo" />
-              <h3 className="font-dm-sans">InventoHub</h3>
+              <div className="lc-cont">
+                <img src={logo} alt="" className="logo" />
+                <h4 className='capitalise'>StockNest</h4>
+              </div>
+              <hr />
+              <WelcomeAdmin />
           </div>
           <div className="menu-bars" onClick={toggle}>
             <FaBars />

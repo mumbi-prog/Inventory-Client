@@ -29,8 +29,9 @@ const WelcomeAdmin = () => {
     <div className="profile-container">
       {adminData ? (
         <div>
-              <p id="first_name" className="user-data text-acc-blue text-2xl font-medium mb-[10px]">
-                Welcome,  {adminData.first_name}
+              <p id="first_name" className="user-data text-acc-blue font-medium mb-[10px]">
+                {/* Welcome,  {adminData.first_name} */}
+                Welcome, <span className='font-bold'>{adminData.last_name}</span>
               </p>
         </div>
       ) : (
