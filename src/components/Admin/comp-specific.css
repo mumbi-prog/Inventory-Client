@@ -1,13 +1,12 @@
-/* USER COMPONENT */
-/* .row-detail {
-    transition: transform 0.3s ease;
+.prod-container tbody tr{
+    font-size: small;
+    border: transparent;
 }
-.row-detail:hover {
-    transform: scale(1.03);
-    border-left: 4px;
-    border-color: green;
-} */
-/* .product-form{ */
-    /* display: block;
-} */
+.prod-container tbody tr:hover{
+    border-left: 4px solid blue;
+    background-color: #dbeafe;
 
+}
+.prod-container tbody tr td{
+    margin-left: 20px;
+}
