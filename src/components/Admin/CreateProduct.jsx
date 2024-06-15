@@ -8,7 +8,7 @@ function CreateProduct() {
         unit_price: '',
         date_bought: '',
         status: 'Available',
-        user_id: '' 
+        user_id: ''
     });
 
     const [users, setUsers] = useState([]);
@@ -23,7 +23,7 @@ function CreateProduct() {
         try {
             const response = await api.get("http://localhost:3000/users");
             if (response.status === 200) {
-                setUsers(response.data); 
+                setUsers(response.data);
             } else {
                 setError("Failed to fetch users.");
             }
@@ -38,6 +38,14 @@ function CreateProduct() {
         setProductDeets({
             ...productDeets,
             [name]: value
+        });
+    };
+
+    const handleAssignUser = (e) => {
+        const userId = e.target.value;
+        setProductDeets({
+            ...productDeets,
+            user_id: userId
         });
     };
 
