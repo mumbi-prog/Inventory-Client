@@ -30,15 +30,14 @@ function Sidebar({ children, setSelectedOption }) {
 
   const handleLogout = async () => {
     try {
-      const response = await api.delete('http://localhost/logout');
+      const response = await api.delete('http://localhost:3000/logout');
       if (response.status === 204) {
-        // window.location.href = '/login'; 
         navigate('/login')
       } else {
         console.error('Failed, Try Again!!');
       }
     } catch (error) {
-      console.error('Error while logging out customer:', error);
+      console.error('Error while logging out admin:', error);
     }
   }
 
