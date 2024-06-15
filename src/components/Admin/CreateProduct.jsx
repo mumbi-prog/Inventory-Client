@@ -15,6 +15,23 @@ function CreateProduct() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    const fetchUsers = async () => {
+        try {
+            const response = await api.get("http://localhost:3000/users");
+            if (response.status === 200) {
+                setUsers(response.data); 
+            } else {
+                setError("Failed to fetch users.");
+            }
+        } catch (error) {
+            setError("Error fetching users.");
+            console.error(error);
+        }
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
