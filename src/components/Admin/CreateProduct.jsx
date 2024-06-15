@@ -109,6 +109,15 @@ function CreateProduct() {
                             <option value="Assigned">Assigned</option>
                         </select>
                     </div>
+                    <div className="form-group">
+                        <label htmlFor="user_id" className='prod-label'>Assign to:</label>
+                        <select name="user_id" value={productDeets.user_id} onChange={handleAssignUser}>
+                            <option value="">Select user...</option>
+                            {users.map(user => (
+                                <option key={user.id} value={user.id}>{`${user.first_name} ${user.last_name}`}</option>
+                            ))}
+                        </select>
+                    </div>
                     {error && <div className="error-message">{error}</div>}
                     <button type="submit" className='btn' disabled={loading}>
                         {loading ? 'Submitting...' : 'Submit'}
