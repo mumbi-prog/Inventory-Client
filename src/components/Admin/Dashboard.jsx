@@ -54,10 +54,10 @@ function Dashboard() {
           <table className="prod-container">
             <thead>
               <tr>
-                <th className="w-auto py-[-5px] px-[0px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> S_Number </th>
-                <th className="w-auto py-[-5px] px-[15px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Category </th>
-                <th className="w-auto py-[-5px] px-[45px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Name </th>
-                <th className="w-auto py-[-5px] px-[45px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Price </th>
+                <th className="w-[180px] py-[-5px] px-[0px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> S_Number </th>
+                <th className="w-[170px] py-[-5px] px-[15px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Category </th>
+                <th className="w-[170px] py-[-5px] px-[45px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Name </th>
+                <th className="w-[150px] py-[-5px] px-[45px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Price </th>
                 <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Date </th>
                 <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Status </th>
                 <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Assigned To: </th>
@@ -65,7 +65,7 @@ function Dashboard() {
             </thead>
             <tbody>
               {products.map((product, index) => (
-                <tr key={index} classname='border-l-4 border-transparent hover:border-blue-500 p-[20px] text-center hover:bg-blue-100'>
+                <tr key={index} classname='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
                   <td className='py-[10px] px-[10px]'>{product.serial_number}</td>
                   <td className='py-[10px] px-[10px]'>{product.category}</td>
                   <td className='py-[10px] px-[10px]'>{product.name}</td>
