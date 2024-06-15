@@ -8,7 +8,6 @@
     width: 230px;
 }
 main{
-    width: 10%;
     padding: 20px;
 }
 .sidebar {
@@ -23,6 +22,7 @@ main{
     display: flex;
     align-items: center;
     padding: 20px 10px 25px 0px;
+
 }
 .second-lc{
     display: flex;
@@ -34,6 +34,7 @@ main{
 .second-lc h4{
     margin-top: 14%;
     font-size: 20px;
+    margin-left: -10px;
 }
 .lc-cont{
     display: flex;
@@ -42,7 +43,6 @@ main{
 .logo{
     width: 90px;
     height: auto;
-
 }
 .menu-bars{
     display: flex;
@@ -50,22 +50,24 @@ main{
     margin-left: 30px;
     cursor: pointer;
     color: #ffffff;
-    margin-top: -1%;
+    margin-top: -21%;
 }
 .link {
     display: flex;
     color: white;
-    padding: 12px 30ypx;
+    padding: 12px 30px;
     gap: 15px;
     background-size: 200% 100%;
     background-position: 100%;
     align-items: center;
+    transition: all .60s ease;
 }
 .link:hover {
     color: #6176BA;
     background: white;
     cursor: pointer;
     border-radius: 20px 0px 0px 20px;
+    margin-left: 10px;
 }
 .icon{
     font-size: 23px;
