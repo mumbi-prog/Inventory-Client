@@ -137,3 +137,35 @@ main{
     background-color: #256086;
 }
 
+
+/* CREATE PRODUCT COMPONENT */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product-form {
+    width: 400px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.prod-label {
+    width: 120px;
+    text-align: right;
+    margin-right: 20px;
+}
+input[type="text"],
+input[type="date"],
+select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+select {
+    width: 100%; 
+}
