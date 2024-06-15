@@ -58,9 +58,9 @@ function CreateUser() {
                         />
                     </div>
                     <div className="form-group mb2 mb-[10px]">
-                        <label htmlFor="email" className='label text-sm font-medium text-gray-700'>Email</label> 
+                        <label htmlFor="email" className='label text-sm font-medium text-gray-700'>Email</label>
                         <input className='input mt-3 p-2 rounded-md bg-gray-bkg focus:outline-none'
-                            type="email" placeholder='Email' name="email" value={userDeets.email} onChange={handleInputChange} required
+                            type="text" placeholder='Email' name="email" value={userDeets.email} onChange={handleInputChange} required
                         />
                     </div>
                     <div className="form-group mb2 mb-[10px]">
