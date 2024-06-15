@@ -81,3 +81,59 @@ main{
 .main-wrapper {
     display: flex; 
 }  
+
+/* CREATE USER BUTTON */
+.sect-container {
+    margin-top: 20px;
+}
+
+.comp-title {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.user-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    width: 400px; 
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.label {
+    width: 100px;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.input {
+    width: 200px;
+    margin-left: 20px; 
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1d5071;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 320px;
+    margin-left: 20px;
+}
+
+.btn:hover {
+    background-color: #256086;
+}
+
