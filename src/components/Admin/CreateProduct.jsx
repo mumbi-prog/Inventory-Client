@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../Api/api.jsx'; 
-
 function CreateProduct() {
     const [productDeets, setProductDeets] = useState({
         serial_number: '',
@@ -8,8 +7,14 @@ function CreateProduct() {
         name: '',
         unit_price: '',
         date_bought: '',
-        status: 'Available'
+        status: 'Available',
+        user_id: '' 
     });
+
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -21,6 +26,7 @@ function CreateProduct() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             const response = await api.post("http://localhost:3000/products", productDeets);
             if (response.status === 201) {
@@ -31,13 +37,18 @@ function CreateProduct() {
                     name: '',
                     unit_price: '',
                     date_bought: '',
-                    status: 'Available'
+                    status: 'Available',
+                    user_id: ''
                 });
+                setError('');
             } else {
-                console.log("Could not create product.");
+                setError("Could not create product.");
             }
         } catch (error) {
+            setError("Error creating product.");
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -73,7 +84,9 @@ function CreateProduct() {
                             <option value="Assigned">Assigned</option>
                         </select>
                     </div>
-                    <button type="submit" className='btn'>Submit</button>
+                    <button type="submit" className='btn' disabled={loading}>
+                        {loading ? 'Submitting...' : 'Submit'}
+                    </button>
                 </form>
             </div>
         </div>
