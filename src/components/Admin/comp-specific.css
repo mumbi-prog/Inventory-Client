@@ -10,3 +10,20 @@
 .prod-container tbody tr td{
     margin-left: 20px;
 }
+
+/* DASHBOARD */
+.dashcards-container{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    justify-content: space-between;
+}
+.prod-card, .assi-card, .users-card{
+    height: 100px;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: all .60s ease;
+    font-size: 17px;
+}
+

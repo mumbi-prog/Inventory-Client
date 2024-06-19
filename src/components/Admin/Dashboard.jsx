@@ -61,16 +61,16 @@ function Dashboard() {
       {/* <WelcomeAdmin /> */}
       <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Dashboard</h1>
 
-      <div className="cards-container">
-        <div className="card">
+      <div className="dashcards-container ">
+        <div className="prod-card bg-rose-600 flex flex-col justify-center justify-around items-center text-center py-[20px] w-[230px] hover:bg-rose-700">
           <h3>Total Products</h3>
           <p>{totalProducts}</p>
         </div>
-        <div className="card">
+        <div className="assi-card bg-fuchsia-600 flex flex-col justify-center justify-around items-center text-center py-[20px] w-[230px] hover:bg-fuchsia-700">
           <h3>Total Assigned Products</h3>
           <p>{totalAssignedProducts}</p>
         </div>
-        <div className="card">
+        <div className="users-card bg-emerald-600 flex flex-col justify-center justify-around items-center text-center py-[20px] w-[230px] hover:bg-emerald-700">
           <h3>Total Users</h3>
           <p>{totalUsers}</p>
         </div>
