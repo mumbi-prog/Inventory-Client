@@ -6,6 +6,9 @@ import './comp-specific.css'
 function Dashboard() {
   const [products, setProducts] = useState([]);
   const [userNames, setUserNames] = useState({});
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalAssignedProducts, setTotalAssignedProducts] = useState(0);
+  const [totalUsers, setTotalUsers] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,6 +16,8 @@ function Dashboard() {
         const productResponse = await api.get("http://localhost:3000/products");
         if (productResponse.status === 202) {
           setProducts(productResponse.data);
+          setTotalProducts(productResponse.data.length);
+
           const userIds = productResponse.data.map(product => product.user_id);
           const userNamesPromises = userIds.map(userId => fetchUserName(userId));
           const userNamesArray = await Promise.all(userNamesPromises);
@@ -21,6 +26,12 @@ function Dashboard() {
             return acc;
           }, {});
           setUserNames(userNamesMap);
+
+          const assignedProductsCount = productResponse.data.filter(product => product.status === 'assigned').length;
+          setTotalAssignedProducts(assignedProductsCount);
+
+          const uniqueUserIds = [...new Set(userIds)];
+          setTotalUsers(uniqueUserIds.length);
         } else {
           console.log("Can't fetch products", productResponse.status);
         }
@@ -49,8 +60,24 @@ function Dashboard() {
     <div className='sect-container mt-[20px]'>
       {/* <WelcomeAdmin /> */}
       <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Dashboard</h1>
+
+      <div className="cards-container">
+        <div className="card">
+          <h3>Total Products</h3>
+          <p>{totalProducts}</p>
+        </div>
+        <div className="card">
+          <h3>Total Assigned Products</h3>
+          <p>{totalAssignedProducts}</p>
+        </div>
+        <div className="card">
+          <h3>Total Users</h3>
+          <p>{totalUsers}</p>
+        </div>
+      </div>
+
       <div className="products-table-container rounded-md bg-gray-100 py-[20px] px-[20px] inline-block mt-[25px]">
-        <div className="products-table ">
+        <div className="products-table">
           <table className="prod-container">
             <thead>
               <tr>
@@ -65,7 +92,7 @@ function Dashboard() {
             </thead>
             <tbody>
               {products.map((product, index) => (
-                <tr key={index} classname='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
+                <tr key={index} className='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
                   <td className='py-[10px] px-[10px]'>{product.serial_number}</td>
                   <td className='py-[10px] px-[25px]'>{product.category}</td>
                   <td className='py-[10px] px-[25px]'>{product.name}</td>
