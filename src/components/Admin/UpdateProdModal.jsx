@@ -11,6 +11,12 @@ function UpdateProdModal({onClose, onUpdate, prodData}) {
         })
     }
 
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        onUpdate(formData);
+        onClose();
+    }
+
   return (
     <div>UpdateProdModal</div>
   )
