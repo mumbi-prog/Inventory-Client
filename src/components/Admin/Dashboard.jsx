@@ -49,10 +49,10 @@ function Dashboard() {
       if (response.status === 200) {
         return `${response.data.first_name} ${response.data.last_name}`;
       }
-      return "Unknown User";
+      return " - ";
     } catch (error) {
       console.error("Error fetching user details:", error);
-      return "Unknown User";
+      return " - ";
     }
   };
 
