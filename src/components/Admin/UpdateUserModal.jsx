@@ -11,6 +11,11 @@ function UpdateUserModal({onClose, onUpdate, userData}) {
         })
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        onUpdate(formData);
+        onClose();
+    }
   return (
     <div>UpdateUserModal</div>
   )
