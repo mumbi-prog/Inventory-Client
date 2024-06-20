@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function UpdateProdModal() {
+function UpdateProdModal({onClose, onUpdate, prodData}) {
+    const [formData, setFormData] = useState(prodData);
+
+    
+
   return (
     <div>UpdateProdModal</div>
   )
