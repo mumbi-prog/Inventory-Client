@@ -87,7 +87,7 @@ function Dashboard() {
                 <th className="w-[50px] py-[-5px] px-[25px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Price </th>
                 <th className="w-[150px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Date </th>
                 <th className="w-[140px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Status </th>
-                <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Assigned To: </th>
+                <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm "> Assigned To: </th>
               </tr>
             </thead>
             <tbody>
