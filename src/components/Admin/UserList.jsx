@@ -7,7 +7,8 @@ import { CiEdit } from "react-icons/ci";
 function UserList() {
     const [userDetails, setUserDetails] = useState([]);
 
-    
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+    const [userToUpdate, setUserToUpdate] = useState(null);
     
     useEffect(() => {
         const fetchUserList = async () =>{
