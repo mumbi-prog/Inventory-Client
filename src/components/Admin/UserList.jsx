@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react';
 import api from '../Api/api.jsx';
 import './comp-specific.css';
 import UpdateUserModal from './UpdateUserModal.jsx';
+import DeleteConfirmationModal from './DeleteConfirmationModal.jsx';
 import { CiEdit } from 'react-icons/ci';
+import { RiDeleteBinLine } from "react-icons/ri";
 
 function UserList() {
     const [userDetails, setUserDetails] = useState([]);
+
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [userToUpdate, setUserToUpdate] = useState(null);
+
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [userToDelete, setUserToDelete] = useState(null);
 
     useEffect(() => {
         const fetchUserList = async () => {
@@ -34,6 +40,16 @@ function UserList() {
     const closeUpdateModal = () => {
         setIsUpdateModalOpen(false);
         setUserToUpdate(null);
+    };
+
+     const openDeleteModal = (user) => {
+        setIsDeleteModalOpen(true);
+        setUserToDelete(user);
+    };
+
+    const closeDeleteModal = () => {
+        setIsDeleteModalOpen(false);
+        setUserToDelete(null);
     };
 
     const handleUpdateUser = (updatedUserData) => {
@@ -66,6 +82,23 @@ function UserList() {
         });
 };
 
+    const confirmDeleteUser = (user) => {
+    closeDeleteModal();
+
+    api
+      .delete(`/users/${user.id}`)
+      .then((response) => {
+        if (response.status === 204) {
+          setUserDetails((prevUsers) => prevUsers.filter((e) => e.id !== user.id));
+        } else {
+          console.error('Failed to delete user');
+        }
+      })
+      .catch((err) => {
+        console.error('Error while deleting user:', err);
+      });
+  };
+
 
     return (
         <div className='sect-container mt-[20px]'>
@@ -90,10 +123,13 @@ function UserList() {
                                     <td className='py-[10px] px-[30px]'>{user.email}</td>
                                     <td className='py-[10px] px-[30px]'>{user.department}</td>
                                     <td className='py-[10px] px-[30px]'>
-                                        <div className="custom-edit-buttons">
+                                        <div className="custom-edit-buttons flex ">
                                             <CiEdit onClick={() => openUpdateModal(user)} className="cursor-pointer" />
+                                            <RiDeleteBinLine onclick={() => openDeleteModal(user)} className='cursor-pointer'/>
                                         </div>
+
                                     </td>
+
                                 </tr>
                             ))}
                         </tbody>
@@ -102,6 +138,9 @@ function UserList() {
             </div>
             {isUpdateModalOpen && (
                 <UpdateUserModal onClose={closeUpdateModal} onUpdate={handleUpdateUser} userData={userToUpdate} />
+            )}
+            {isDeleteModalOpen && (
+                <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteUser} userData={userToDelete}/>
             )}
         </div>
     );
