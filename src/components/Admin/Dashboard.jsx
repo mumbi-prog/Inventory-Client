@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import WelcomeAdmin from './WelcomeAdmin';
 import api from '../Api/api';
-import './comp-specific.css'
+import './comp-specific.css';
 
 function Dashboard() {
   const [products, setProducts] = useState([]);

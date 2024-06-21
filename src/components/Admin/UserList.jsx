@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import api from '../Api/api.jsx'
-import './comp-specific.css'
+import api from '../Api/api.jsx';
+import './comp-specific.css';
+import UpdateUserModal from './UpdateUserModal.jsx';
+import { CiEdit } from "react-icons/ci";
 
 function UserList() {
     const [userDetails, setUserDetails] = useState([]);
+
+    
     
     useEffect(() => {
         const fetchUserList = async () =>{
