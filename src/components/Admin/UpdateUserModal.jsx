@@ -56,7 +56,11 @@ function UpdateUserModal({onClose, onUpdate, userData}) {
                             </select>
                 </div>
                 
-
+                <div className="button-container">
+                    <button type='submit'>Update</button>
+                    <button onClick={onClose}>Cancel</button>
+                </div>
+            
             </form>
         </div>
     </div>
