@@ -21,12 +21,13 @@ function CreateUser() {
      const CATEGORIES= ['Stores', 'IT', 'Maintenance', 'Operations', 'Drivers', 'Finance'];
 
     const handleCategoryChange = (e) => {
-        const {name, value} = e.target;
-        setUserDeets({
-            ...userDeets,
-            [name]: value
-        });
-    }
+    const { name, value } = e.target;
+    setUserDeets({
+        ...userDeets,
+        [name]: value
+    });
+};
+
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
@@ -75,17 +76,21 @@ function CreateUser() {
                     </div> 
                      <div className="form-group mb2 mb-[10px]">
                         <label htmlFor="department" className='label text-sm font-medium text-gray-700'> Department:</label>
-                            <select
-                                    name="category" value={userDeets.department} onChange={handleCategoryChange}
-                                    className="input mt-3 p-2 rounded-md bg-gray-bkg focus:outline-none" required
-                                    >
-                                        <option value="">Select department</option>
-                                        {CATEGORIES.map((category) => (
-                                            <option key={category} value={category}>
-                                                {category}
-                                            </option>
-                                        ))}
+                           <select
+                                name="department"
+                                value={userDeets.department}
+                                onChange={handleCategoryChange}
+                                className="input mt-3 p-2 rounded-md bg-gray-bkg focus:outline-none"
+                                required
+                            >
+                                <option value="">Select department</option>
+                                {CATEGORIES.map((category) => (
+                                    <option key={category} value={category}>
+                                        {category}
+                                    </option>
+                                ))}
                             </select>
+
                     </div>
                     
                     <button type="submit" className='btn'>Create User</button>
