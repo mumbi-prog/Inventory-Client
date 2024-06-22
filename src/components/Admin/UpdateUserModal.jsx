@@ -27,8 +27,8 @@ function UpdateUserModal({onClose, onUpdate, userData}) {
         onClose();
     }
   return (
-    <div className='modal-wrapper'>
-        <div>
+    <div className='modal-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex justify-center items-center z-50'>
+        <div className='modal-content bg-white border border-gray-300 rounded-md p-5 w-[400px] shadow-md text-left'>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="first_name">First Name</label>

@@ -80,7 +80,7 @@ function UserList() {
         .catch((error) => {
             console.error('Error updating user:', error);
         });
-};
+    };
 
     const confirmDeleteUser = (user) => {
     closeDeleteModal();
@@ -113,6 +113,7 @@ function UserList() {
                                 <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px] text-sm">Email</th>
                                 <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px] text-sm">Department</th>
                                 <th className="w-[50px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm"></th>
+                            
                             </tr>
                         </thead>
                         <tbody>
@@ -123,9 +124,9 @@ function UserList() {
                                     <td className='py-[10px] px-[30px]'>{user.email}</td>
                                     <td className='py-[10px] px-[30px]'>{user.department}</td>
                                     <td className='py-[10px] px-[30px]'>
-                                        <div className="custom-edit-buttons flex ">
-                                            <CiEdit onClick={() => openUpdateModal(user)} className="cursor-pointer" />
-                                            <RiDeleteBinLine onclick={() => openDeleteModal(user)} className='cursor-pointer'/>
+                                        <div className="custom-edit-buttons flex gap-[20px]">
+                                            <CiEdit onClick={() => openUpdateModal(user)} className="cursor-pointer" title='Update User'/>
+                                            <RiDeleteBinLine onClick={() => openDeleteModal(user)} className='cursor-pointer' title='Delete User'/>
                                         </div>
 
                                     </td>
