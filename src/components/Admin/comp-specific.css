@@ -19,7 +19,7 @@
     justify-content: space-between;
 }
 .prod-card, .assi-card, .users-card{
-    height: 100px;
+    height: 90px;
     text-align: center;
     border-radius: 10px;
     font-weight: 700;
@@ -36,3 +36,5 @@
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.5);
 } */
+
+
