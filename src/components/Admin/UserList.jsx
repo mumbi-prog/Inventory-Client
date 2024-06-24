@@ -141,8 +141,9 @@ function UserList() {
                 <UpdateUserModal onClose={closeUpdateModal} onUpdate={handleUpdateUser} userData={userToUpdate} />
             )}
             {isDeleteModalOpen && (
-                <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteUser} userData={userToDelete}/>
+                <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteUser(userToDelete)} userData={userToDelete}/>
             )}
+
         </div>
     );
 }
