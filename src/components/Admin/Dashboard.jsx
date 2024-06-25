@@ -61,14 +61,24 @@ function Dashboard() {
     }
   };
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+  const handleSearchChange = (product) => {
+    setSearchTerm(product.target.value);
   };
 
   const filteredProducts = products.filter(product =>
     product.serial_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const openDeleteModal = (product) => {
+    setIsDeleteModalOpen(true);
+    setProdToDelete(product);
+  }
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+    setProdToDelete(null);
+  }
 
   return (
     <div className='sect-container mt-[20px]'>
