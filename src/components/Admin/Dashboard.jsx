@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../Api/api';
 import './comp-specific.css';
+import UpdateProdModal from './UpdateProdModal.jsx';
+import { CiEdit } from 'react-icons/ci';
 import DeleteConfirmationModal from './DeleteConfirmationModal.jsx';
 import { RiDeleteBinLine } from "react-icons/ri";
 
@@ -11,6 +13,9 @@ function Dashboard() {
   const [totalAssignedProducts, setTotalAssignedProducts] = useState(0);
   const [totalUsers, setTotalUsers] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [prodToUpdate, setProdToUpdate] = useState(null);
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [prodToDelete, setProdToDelete] = useState(null);
@@ -70,6 +75,18 @@ function Dashboard() {
     product.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // update modal
+  const openUpdateModal = (product) => {
+    setIsUpdateModalOpen(true);
+    setProdToUpdate(product);
+  }
+  
+  const closeUpdateModal = () => {
+    setIsUpdateModalOpen(false);
+    setProdToUpdate(null);
+  }
+  // delete modal
+
   const openDeleteModal = (product) => {
     setIsDeleteModalOpen(true);
     setProdToDelete(product);
@@ -80,6 +97,22 @@ function Dashboard() {
     setProdToDelete(null);
   }
 
+  // update function
+  const confirmUpdateProduct = async(updatedProductData) => {
+    try{
+      const response = await api.patch(`/products/${prodToUpdate.id}`, updatedProductData);
+      if (response.status === 200) {
+          console.log('Product updated successfully')
+      } else {
+        console.log('Failed to update product')
+      }
+    }
+    catch(error){
+      console.error('Error occured while updating product', error)
+    }
+  }
+
+  // delete function
   const confirmDeleteProduct = async(product) => {
     try{
       const response = await api.delete(`/products/${product.id}`);
@@ -146,7 +179,8 @@ function Dashboard() {
                   <td className='py-[10px] px-[25px]'>{product.date_bought}</td>
                   <td className='py-[10px] px-[25px]'>{product.status}</td>
                   <td className='py-[10px] px-[25px]'>{userNames[product.user_id]}</td>
-                  <td className='py-[10px] px-[25px]'>
+                  <td className='py-[10px] px-[25px] flex gap-[20px]'>
+                    <CiEdit onClick={() => openUpdateModal(product)} className='cursor-pointer' title='Update Product'/>
                     <RiDeleteBinLine onClick={() => openDeleteModal(product)} className='cursor-pointer' title='Delete Product'/>
                   </td>
                 </tr>

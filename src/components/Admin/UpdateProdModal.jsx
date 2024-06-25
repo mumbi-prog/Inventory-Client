@@ -18,7 +18,13 @@ function UpdateProdModal({onClose, onUpdate, prodData}) {
     }
 
   return (
-    <div>UpdateProdModal</div>
+    <div>
+      <div>
+        <form onClick={handleSubmit}>
+          
+        </form>
+      </div>
+    </div>
   )
 }
 
