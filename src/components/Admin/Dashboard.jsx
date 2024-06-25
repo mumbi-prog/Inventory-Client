@@ -12,6 +12,9 @@ function Dashboard() {
   const [totalUsers, setTotalUsers] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [prodToDelete, setProdToDelete] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
