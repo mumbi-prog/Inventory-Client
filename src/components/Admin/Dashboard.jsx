@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../Api/api';
 import './comp-specific.css';
+import DeleteConfirmationModal from './DeleteConfirmationModal.jsx';
+import { RiDeleteBinLine } from "react-icons/ri";
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
