@@ -132,7 +132,8 @@ function Dashboard() {
                 <th className="w-[50px] py-[-5px] px-[25px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Price </th>
                 <th className="w-[150px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Date </th>
                 <th className="w-[140px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Status </th>
-                <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm "> Assigned To: </th>
+                <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Assigned To: </th>
+                <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm "> </th>
               </tr>
             </thead>
             <tbody>
@@ -145,13 +146,18 @@ function Dashboard() {
                   <td className='py-[10px] px-[25px]'>{product.date_bought}</td>
                   <td className='py-[10px] px-[25px]'>{product.status}</td>
                   <td className='py-[10px] px-[25px]'>{userNames[product.user_id]}</td>
+                  <td className='py-[10px] px-[25px]'>
+                    <RiDeleteBinLine onClick={() => openDeleteModal(product)} className='cursor-pointer' title='Delete Product'/>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-
+               {isDeleteModalOpen && (
+                <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteProduct(prodToDelete)} userData={prodToDelete}/>
+            )}
     </div>
   );
 }
