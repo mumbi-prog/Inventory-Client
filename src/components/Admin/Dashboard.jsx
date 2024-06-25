@@ -80,6 +80,22 @@ function Dashboard() {
     setProdToDelete(null);
   }
 
+  const confirmDeleteProduct = async(product) => {
+    try{
+      const response = await api.delete(`/products/${product.id}`);
+        if (response.status === 204) {
+          console.log("Deleted user successfully!");
+          setProducts((prevProducts) => prevProducts.filter((e) => e.id !==product.id));
+        }
+        else {
+          console.log('Unable to delete product');
+        }
+    }
+    catch(error){
+      console.error('Error occured while deleting product', error);
+    }
+  }
+
   return (
     <div className='sect-container mt-[20px]'>
       <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Dashboard</h1>
