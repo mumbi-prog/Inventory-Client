@@ -30,7 +30,7 @@ function UpdateProdModal({onClose, onUpdate, prodData}) {
             <input type="text" placeholder='Category' name='category' value={formData.category} onChange={handleInputChange}/>
           </div>
           <div className="form-group">
-            <label htmlFor="name">Serial Number</label>
+            <label htmlFor="name">Name</label>
             <input type="text" placeholder='Name' name='name' value={formData.name} onChange={handleInputChange} required/>
           </div>
           <div className="form-group">

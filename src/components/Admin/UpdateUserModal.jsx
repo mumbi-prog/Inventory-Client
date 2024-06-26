@@ -60,7 +60,7 @@ function UpdateUserModal({onClose, onUpdate, userData}) {
                 </div>
                 
                 <div className="button-container flex justify-center items-center mt-[15px]">
-                    <button type='submit' className="update-btn  bg-red-500 text-white-700 transparent px-4 py-2 rounded-full mr-4 hover:bg-red-600">Update</button>
+                    <button type='submit' className="update-btn  bg-red-500 text-white px-4 py-2 rounded-full mr-4 hover:bg-red-600">Update</button>
                     <button onClick={onClose} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400">Cancel</button>
                 </div>
             

@@ -108,8 +108,7 @@ function UserList() {
                     <table>
                         <thead className='bg-hover-blue'>
                             <tr>
-                                <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px] text-sm">First Name</th>
-                                <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px] text-sm">Last Name</th>
+                                <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px] text-sm">Full Name</th>
                                 <th className="w-[200px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px] text-sm">Email</th>
                                 <th className="w-[180px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center border-r-[20px] text-sm">Department</th>
                                 <th className="w-[50px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm"></th>
@@ -119,8 +118,8 @@ function UserList() {
                         <tbody>
                             {userDetails.map((user, index) => (
                                 <tr key={index} className='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
-                                    <td className='py-[10px] px-[20px]'>{user.first_name}</td>
-                                    <td className='py-[10px] px-[30px]'>{user.last_name}</td>
+                                    <td className='py-[10px] px-[20px]'>{user.first_name} {user.last_name}</td>
+                                    {/* <td className='py-[10px] px-[30px]'>{user.last_name}</td> */}
                                     <td className='py-[10px] px-[30px]'>{user.email}</td>
                                     <td className='py-[10px] px-[30px]'>{user.department}</td>
                                     <td className='py-[10px] px-[30px]'>

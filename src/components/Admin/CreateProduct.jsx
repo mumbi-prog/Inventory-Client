@@ -88,7 +88,11 @@ function CreateProduct() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="category" className='prod-label'>Category</label>
-                        <input type="text" placeholder='Category' name='category' value={productDeets.category} onChange={handleInputChange} required />
+                        <select type="text" placeholder='Category' name='category' value={productDeets.category} onChange={handleInputChange} required>   
+                            <option value="desktop">Desktop</option>
+                            <option value="phone">Phone</option>
+                            <option value="modem">Modem</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="name" className='prod-label'>Name</label>
