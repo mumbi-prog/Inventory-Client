@@ -133,15 +133,16 @@ function Dashboard() {
 
   return (
     <div className='sect-container mt-[20px]'>
-      <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Dashboard</h1>
+      <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Overview</h1>
+      
 
-      <div className="dashcards-container">
+      <div className="dashcards-container font-dm-sans">
         <div className="prod-card bg-rose-600 flex flex-col justify-center justify-around items-center text-center py-[10px] w-[230px] hover:bg-rose-700">
           <h3>Total Products</h3>
           <p>{totalProducts}</p>
         </div>
         <div className="assi-card bg-fuchsia-600 flex flex-col justify-center justify-around items-center text-center py-[10px] w-[230px] hover:bg-fuchsia-700">
-          <h3>Total Assigned Products</h3>
+          <h3>Assigned Products</h3>
           <p>{totalAssignedProducts}</p>
         </div>
         <div className="users-card bg-emerald-600 flex flex-col justify-center justify-around items-center text-center py-[10px] w-[230px] hover:bg-emerald-700">
@@ -150,8 +151,8 @@ function Dashboard() {
         </div>
       </div>
 
-    <div className="search-container p-[5px] mt-[10px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center">
-        <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] font-light font-playfair text-sm bg-transparent"  
+    <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
+        <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
         placeholder="Search by serial number or category" value={searchTerm} onChange={handleSearchChange}/>
     </div> 
 
