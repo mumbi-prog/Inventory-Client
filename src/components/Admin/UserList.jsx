@@ -15,6 +15,17 @@ function UserList() {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
 
+    // search beginning
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearchChange = (user) => {
+    setSearchTerm(user.target.value);
+    };
+
+   
+    // search end
+    
+
     useEffect(() => {
         const fetchUserList = async () => {
             try {
