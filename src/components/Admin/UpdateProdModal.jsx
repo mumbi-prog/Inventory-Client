@@ -1,26 +1,47 @@
 import React, { useState, useEffect } from 'react'
+import api from './../Api/api.jsx'
 
 function UpdateProdModal({onClose, onUpdate, prodData}) {
   const [formData, setFormData] = useState(prodData);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(formData.user_id);
 
-  
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await api.get("/users");
+        if (response.status === 200) {
+          setUsers(response.data);
+        } else {
+          console.log("Failed to fetch users:", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        })
-    }
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    };
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        onUpdate(formData);
-        onClose();
-    }
+    const handleUserChange = (e) => {
+      setSelectedUser(e.target.value);
+    };
 
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const updatedProductData = {
+        ...formData,
+        user_id: selectedUser
+      };
+    }
   return (
     <div>
       <div>
