@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function UpdateProdModal({onClose, onUpdate, prodData}) {
-    const [formData, setFormData] = useState(prodData);
+  const [formData, setFormData] = useState(prodData);
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(formData.user_id);
+
+  
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
