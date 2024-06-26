@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import api from './../Api/api.jsx'
+import React, { useState, useEffect } from 'react';
+import api from '../Api/api';
+import './comp-specific.css';
 
-function UpdateProdModal({onClose, onUpdate, prodData}) {
+function UpdateProdModal({ onClose, onUpdate, prodData }) {
   const [formData, setFormData] = useState(prodData);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(formData.user_id);
 
   useEffect(() => {
+    // Fetch users and set initial form data
     const fetchUsers = async () => {
       try {
-        const response = await api.get("/users");
+        const response = await api.get("http://localhost:3000/users");
         if (response.status === 200) {
           setUsers(response.data);
         } else {
@@ -23,25 +25,40 @@ function UpdateProdModal({onClose, onUpdate, prodData}) {
     fetchUsers();
   }, []);
 
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({
-        ...formData,
-        [name]: value
-      });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleUserChange = (e) => {
+    setSelectedUser(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const updatedProductData = {
+      ...formData,
+      user_id: selectedUser // Assign selected user to product
     };
 
-    const handleUserChange = (e) => {
-      setSelectedUser(e.target.value);
-    };
-
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const updatedProductData = {
-        ...formData,
-        user_id: selectedUser
-      };
+    try {
+      const response = await api.patch(`/products/${formData.id}`, updatedProductData);
+      if (response.status === 200) {
+        console.log('Product updated successfully');
+        onUpdate(updatedProductData);
+        onClose();
+      } else {
+        console.log('Failed to update product');
+      }
+    } catch (error) {
+      console.error('Error occurred while updating product:', error);
     }
+  };
+    
+
   return (
     <div>
       <div>
