@@ -13,29 +13,20 @@ function UserList() {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
-
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
-
-    const filteredUsers = userDetails.filter(user =>
-        user.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 9;
 
     useEffect(() => {
         const fetchUserList = async () => {
             try {
                 const response = await api.get("http://localhost:3000/users");
                 if (response.status === 200) {
-                    console.log("All users fetched successfully!!");
                     setUserDetails(response.data);
                 } else {
                     console.log("Error fetching users", response.status);
                 }
             } catch (error) {
-                console.error(error);
+                console.error('Error fetching users:', error);
             }
         };
         fetchUserList();
@@ -62,7 +53,8 @@ function UserList() {
     };
 
     const handleUpdateUser = (updatedUserData) => {
-        api.patch(`/users/${userToUpdate.id}`, updatedUserData)
+        api
+            .patch(`/users/${userToUpdate.id}`, updatedUserData)
             .then((response) => {
                 if (response.status === 200) {
                     api.get(`http://localhost:3000/users/${userToUpdate.id}`)
@@ -92,7 +84,9 @@ function UserList() {
 
     const confirmDeleteUser = (user) => {
         closeDeleteModal();
-        api.delete(`/users/${user.id}`)
+
+        api
+            .delete(`/users/${user.id}`)
             .then((response) => {
                 if (response.status === 204) {
                     setUserDetails((prevUsers) => prevUsers.filter((e) => e.id !== user.id));
@@ -105,17 +99,43 @@ function UserList() {
             });
     };
 
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const filteredUsers = userDetails.filter(user =>
+        user.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const startIndex = (currentPage - 1) * usersPerPage;
+    const endIndex = startIndex + usersPerPage;
+    const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
+
+    const goToPreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const goToNextPage = () => {
+        const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
     return (
         <div className='sect-container mt-[20px]'>
-            <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>All Users</h1>
-            <div className="search-container p-[5px] mt-[10px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center">
-                        <input
-                            type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] font-light font-playfair text-sm bg-transparent"
-                            placeholder="Search by name or email" value={searchTerm} onChange={handleSearchChange} />
+            <h4 className='comp-title text-hover-blue font-bold capitalize mb-[15px]'>All Users</h4>
+            <div className="search-container p-[5px] mt-[3px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center">
+                <input
+                    type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] font-light font-playfair text-sm bg-transparent"
+                    placeholder="Search by name or email" value={searchTerm} onChange={handleSearchChange} />
             </div> 
-            <div className="users-table-container rounded-md bg-gray-100 py-[20px] px-[50px] inline-block mt-[25px]">
+            <div className="users-table-container rounded-md bg-gray-100 py-[20px] px-[50px] inline-block mt-[15px]">
                 <div className="users-table flex">
-                    
                     <table>
                         <thead className='bg-hover-blue'>
                             <tr>
@@ -126,8 +146,8 @@ function UserList() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredUsers.map((user) => (
-                                <tr key={user.id} className='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
+                            {paginatedUsers.map((user, index) => (
+                                <tr key={index} className='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
                                     <td className='py-[10px] px-[20px]'>{user.first_name} {user.last_name}</td>
                                     <td className='py-[10px] px-[30px]'>{user.email}</td>
                                     <td className='py-[10px] px-[30px]'>{user.department}</td>
@@ -149,8 +169,38 @@ function UserList() {
             {isDeleteModalOpen && (
                 <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteUser(userToDelete)} userData={userToDelete}/>
             )}
+
+            <div className="pagination flex justify-center items-center my-[5px]">
+                <button
+                    onClick={goToPreviousPage}
+                    disabled={currentPage === 1}
+                    className="prev-next "
+                >
+                    Previous
+                </button>
+                {Array.from(
+                    { length: Math.ceil(filteredUsers.length / usersPerPage) },
+                    (_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setCurrentPage(index + 1)}
+                            className={`page-button-num mx-[5px] ${currentPage === index + 1 ? 'active' : ''}`}
+                        >
+                            {index + 1}
+                        </button>
+                    )
+                )}
+                <button
+                    onClick={goToNextPage}
+                    disabled={currentPage === Math.ceil(filteredUsers.length / usersPerPage)}
+                    className="prev-next"
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 }
 
 export default UserList;
+
