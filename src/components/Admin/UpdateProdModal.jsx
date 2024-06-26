@@ -69,7 +69,11 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
           </div>
           <div className="form-group">
             <label htmlFor="category">Category</label>
-            <input type="text" placeholder='Category' name='category' value={formData.category} onChange={handleInputChange}/>
+            <select type="text" placeholder='Category' name='category' value={formData.category} onChange={handleInputChange}>
+              <option value="desktop">Desktop</option>
+              <option value="phone">Phone</option>
+              <option value="modem">Modem</option>
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="name">Name</label>
@@ -89,7 +93,20 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
               <option value="available">Available</option>
             </select>
           </div>
-          
+          <div className="form-group">
+            <label htmlFor="user">Assign User</label>
+            <select name="user" id="user" value={selectedUser} onChange={handleUserChange} >
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {`${user.first_name} ${user.last_name}`}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="button-container flex justify-center items-center mt-[15px]">
+              <button type='submit' className="update-btn  bg-red-500 text-white px-4 py-2 rounded-full mr-4 hover:bg-red-600">Update</button>
+              <button onClick={onClose} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400">Cancel</button>
+          </div>
         </form>
       </div>
     </div>
