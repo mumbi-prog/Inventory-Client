@@ -119,6 +119,8 @@ function Dashboard() {
         if (response.status === 204) {
           console.log("Deleted user successfully!");
           setProducts((prevProducts) => prevProducts.filter((e) => e.id !==product.id));
+          setIsDeleteModalOpen(false); 
+          setProdToDelete(null);
         }
         else {
           console.log('Unable to delete product');
