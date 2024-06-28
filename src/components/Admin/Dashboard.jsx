@@ -14,7 +14,7 @@ function Dashboard() {
   const [totalUsers, setTotalUsers] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const prodsPerPage = 9;
+  const prodsPerPage = 7;
 
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [prodToUpdate, setProdToUpdate] = useState(null);
@@ -209,7 +209,7 @@ function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {filteredProducts.map((product, index) => (
+              {paginatedProds.map((product, index) => (
                 <tr key={index} className='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
                   <td className='py-[10px] px-[10px]'>{product.serial_number}</td>
                   <td className='py-[10px] px-[25px]'>{product.category}</td>
@@ -236,6 +236,35 @@ function Dashboard() {
                {isDeleteModalOpen && (
                 <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteProduct(prodToDelete)} userData={prodToDelete}/>
             )}
+
+            <div className="pagination flex justify-center items-center my-[5px]">
+                <button
+                    onClick={goToPreviousPage}
+                    disabled={currentPage === 1}
+                    className="prev-next "
+                >
+                    Previous
+                </button>
+                {Array.from(
+                    { length: Math.ceil(filteredProducts.length / prodsPerPage) },
+                    (_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setCurrentPage(index + 1)}
+                            className={`page-button-num mx-[5px] ${currentPage === index + 1 ? 'active' : ''}`}
+                        >
+                            {index + 1}
+                        </button>
+                    )
+                )}
+                <button
+                    onClick={goToNextPage}
+                    disabled={currentPage === Math.ceil(filteredProducts.length / prodsPerPage)}
+                    className="prev-next"
+                >
+                    Next
+                </button>
+            </div>
     </div>
   );
 }
