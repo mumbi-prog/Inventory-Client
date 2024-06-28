@@ -50,15 +50,15 @@ function CreateUser() {
     };
 
     return (
-        <div className='sect-container mt-[20px] bg-gray-bkg'>
+        <div className='sect-container mt-[20px]'>
 
           <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Create New User</h1>
 
-            <div className="user-form">
+            <div className="user-form bg-gray-bkg p-[20px] rounded-md">
                 <form className="user-details block" onSubmit={handleSubmit}>
                     <div className="form-group mb2 mb-[10px]">
                         <label htmlFor="first_name" className='label text-sm font-medium text-gray-700'>First Name</label>
-                        <input className='input mt-3 p-2 rounded-md bg-gray-bkg focus:outline-none' 
+                        <input className='input mt-3 p-2 rounded-md bg-light-blue focus:outline-none' 
                             type="text" placeholder='First Name' name="first_name" value={userDeets.first_name}  onChange={handleInputChange}  required                        
                         />
                     </div>
