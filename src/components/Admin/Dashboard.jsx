@@ -102,7 +102,7 @@ function Dashboard() {
         api
             .patch(`/products/${prodToUpdate.id}`, updatedProdData)
             .then((response) => {
-                if (response.status === 200) {
+                if (response.status === 202) {
                     api.get(`http://localhost:3000/products/${prodToUpdate.id}`)
                         .then((response) => {
                             if (response.status === 200) {
@@ -113,11 +113,11 @@ function Dashboard() {
                                 );
                                 closeUpdateModal();
                             } else {
-                                console.error('Failed to fetch updated user details');
+                                console.error('Failed to fetch updated prouct details');
                             }
                         })
                         .catch((error) => {
-                            console.error('Error fetching updated user details:', error);
+                            console.error('Error fetching updated product details:', error);
                         });
                 } else {
                     console.error('Failed to update user');

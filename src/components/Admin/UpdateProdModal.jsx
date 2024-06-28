@@ -45,7 +45,7 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
 
     try {
       const response = await api.patch(`/products/${formData.id}`, updatedProductData);
-      if (response.status === 200) {
+      if (response.status === 202) {
         console.log('Product updated successfully');
         onUpdate(updatedProductData);
         onClose();
@@ -59,53 +59,53 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
     
 
   return (
-    <div>
-      <div>
-        <form onClick={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="serial_number">Serial Number</label>
-            <input type="text" placeholder='Serial Number' name='serial_number' value={formData.serial_number} onChange={handleInputChange} required/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="category">Category</label>
-            <select type="text" placeholder='Category' name='category' value={formData.category} onChange={handleInputChange}>
-              <option value="desktop">Desktop</option>
-              <option value="phone">Phone</option>
-              <option value="modem">Modem</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input type="text" placeholder='Name' name='name' value={formData.name} onChange={handleInputChange} required/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="unit-price">Unit Price</label>
-            <input type="number" placeholder='Unit Price' name='unit-price' value={formData.unit_price} onChange={handleInputChange}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="date">Date Bought</label>
-            <input type="date" placeholder='Date Bought' name='date-bought' value={formData.date_bought} onChange={handleInputChange} />
-          </div>
-          <div className="form-group">
-            <select name="status" id="status">
-              <option value="assigned">Assigned</option>
-              <option value="available">Available</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="user">Assign User</label>
-            <select name="user" id="user" value={selectedUser} onChange={handleUserChange} >
-              {users.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {`${user.first_name} ${user.last_name}`}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="button-container flex justify-center items-center mt-[15px]">
-              <button type='submit' className="update-btn  bg-red-500 text-white px-4 py-2 rounded-full mr-4 hover:bg-red-600">Update</button>
-              <button onClick={onClose} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400">Cancel</button>
-          </div>
+    <div className='modal-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex justify-center items-center z-50'>
+        <div className='modal-content bg-white border border-gray-300 rounded-md p-5 w-[450px] shadow-md text-left'>
+          <form onSubmit={handleSubmit} className="prod-details block">
+              <div className="form-group">
+                <label htmlFor="serial_number">Serial Number</label>
+                <input type="text" placeholder='Serial Number' name='serial_number' value={formData.serial_number} onChange={handleInputChange} required/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="category">Category</label>
+                <select type="text" placeholder='Category' name='category' value={formData.category} onChange={handleInputChange}>
+                  <option value="desktop">Desktop</option>
+                  <option value="phone">Phone</option>
+                  <option value="modem">Modem</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input type="text" placeholder='Name' name='name' value={formData.name} onChange={handleInputChange} required/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="unit-price">Unit Price</label>
+                <input type="text" placeholder='Unit Price' name='unit_price' value={formData.unit_price} onChange={handleInputChange}/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="date">Date Bought</label>
+                <input type="date" placeholder='Date Bought' name='date_bought' value={formData.date_bought} onChange={handleInputChange} />
+              </div>
+              <div className="form-group">
+                <select name="status" id="status">
+                  <option value="assigned">Assigned</option>
+                  <option value="available">Available</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="user">Assign User</label>
+                <select name="user" id="user" value={selectedUser} onChange={handleUserChange} >
+                  {users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {`${user.first_name} ${user.last_name}`}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="button-container flex justify-center items-center mt-[15px]">
+                  <button type='submit' className="update-btn  bg-red-500 text-white px-4 py-2 rounded-full mr-4 hover:bg-red-600">Update</button>
+                  <button onClick={onClose} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400">Cancel</button>
+              </div>
         </form>
       </div>
     </div>
