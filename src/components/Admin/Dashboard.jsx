@@ -13,6 +13,8 @@ function Dashboard() {
   const [totalAssignedProducts, setTotalAssignedProducts] = useState(0);
   const [totalUsers, setTotalUsers] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const prodsPerPage = 9;
 
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [prodToUpdate, setProdToUpdate] = useState(null);
