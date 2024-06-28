@@ -52,14 +52,14 @@ function AdminSignup() {
                     <div className="form">
                         <form onSubmit={handleSubmit}>
                             <div className="name-container flex mb-[10px]">
-                                <div className="mb2 w-[195px]">
+                                <div className="user-name mb2">
                                     <label htmlFor="f_name" className="block text-sm font-medium text-gray-700"> First Name</label>
                                     <input
                                         placeholder="First Name" type="text" id="f_name" name="f_name"
                                         className="mt-3 p-2 w-full rounded-md bg-gray-bkg focus:outline-none" required value={firstName} onChange={(e) => setFirstName(e.target.value)}
                                     />
                                 </div>
-                                <div className="mb2 ml-[25px] w-[195px]">
+                                <div className="user-name mb2 ml-[25px] ">
                                     <label htmlFor="l_name" className="block text-sm font-medium text-gray-700"> Last Name </label>
                                     <input
                                         placeholder="Last Name" type="text" id="l_name" name="l_name"

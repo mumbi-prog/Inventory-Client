@@ -83,11 +83,11 @@ function CreateProduct() {
             <div className="form-container">
                 <form className="product-form" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="serial_number" className='prod-label'>Serial Number</label>
+                        <label htmlFor="serial_number" className='label text-sm font-medium text-gray-700'>Serial Number</label>
                         <input type="text" placeholder='Serial Number' name='serial_number' value={productDeets.serial_number} onChange={handleInputChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="category" className='prod-label'>Category</label>
+                        <label htmlFor="category" className='label text-sm font-medium text-gray-700'>Category</label>
                         <select type="text" placeholder='Category' name='category' value={productDeets.category} onChange={handleInputChange} required>   
                             <option value="desktop">Desktop</option>
                             <option value="phone">Phone</option>
@@ -95,26 +95,26 @@ function CreateProduct() {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="name" className='prod-label'>Name</label>
+                        <label htmlFor="name" className='label text-sm font-medium text-gray-700'>Name</label>
                         <input type="text" placeholder='Name' name='name' value={productDeets.name} onChange={handleInputChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="unit_price" className='prod-label'>Unit Price</label>
+                        <label htmlFor="unit_price" className='label text-sm font-medium text-gray-700'>Unit Price</label>
                         <input type="text" placeholder='Unit Price' name='unit_price' value={productDeets.unit_price} onChange={handleInputChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="date_bought" className='prod-label'>Date Bought</label>
+                        <label htmlFor="date_bought" className='label text-sm font-medium text-gray-700'>Date Bought</label>
                         <input type="date" name='date_bought' value={productDeets.date_bought} onChange={handleInputChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="status" className='prod-label'>Status</label>
+                        <label htmlFor="status" className='label text-sm font-medium text-gray-700'>Status</label>
                         <select name="status" value={productDeets.status} onChange={handleInputChange}>
                             <option value="Available">Available</option>
                             <option value="Assigned">Assigned</option>
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="user_id" className='prod-label'>Assign to:</label>
+                        <label htmlFor="user_id" className='label text-sm font-medium text-gray-700'>Assign to:</label>
                         <select name="user_id" value={productDeets.user_id} onChange={handleAssignUser}>
                             <option value="">Select user...</option>
                             {users.map(user => (

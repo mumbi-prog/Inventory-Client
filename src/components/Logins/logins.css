@@ -19,6 +19,10 @@ input:focus {
                -3px -3px 10px #ffffff;
   }
 
+.user-name{
+  width: 195px;
+}
+
   /* RESPONSIVENESS */
   @media screen and (max-width: 1053px) {
     .auth-wrapper{
@@ -27,6 +31,10 @@ input:focus {
     }
     .t-button{
       margin-left: 450px;
+    }
+    /* signup */
+    .user-name{
+      width: 150px;
     }
   }
   @media screen and (max-width: 855px) {
@@ -47,4 +55,6 @@ input:focus {
           .t-button {
             margin-left: 450px;
           }
+
+          /* signup */
   }
