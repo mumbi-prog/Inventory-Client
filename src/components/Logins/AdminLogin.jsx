@@ -89,7 +89,7 @@ const PasswordInput = ({ name, title, placeholder, value, onChange, showPassword
                     onChange={onChange}
                 />
                 <button
-                    type="button"
+                    type="t-button"
                     onClick={onTogglePassword}
                     className="absolute flex flex-end ml-[380px] text-gray-600 hover:text-gray-800"
                 >
