@@ -154,6 +154,14 @@ function Dashboard() {
   const endIndex = startIndex + prodsPerPage;
   const paginatedProds = filteredProducts.slice(startIndex, endIndex);
 
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage -1)
+    }
+  };
+
+  
+
   return (
     <div className='sect-container mt-[20px]'>
       <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Overview</h1>
