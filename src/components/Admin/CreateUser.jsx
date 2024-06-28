@@ -50,7 +50,7 @@ function CreateUser() {
     };
 
     return (
-        <div className='sect-container mt-[20px]'>
+        <div className='sect-container mt-[20px] bg-gray-bkg'>
 
           <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Create New User</h1>
 

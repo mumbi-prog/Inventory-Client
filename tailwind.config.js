@@ -15,7 +15,7 @@ module.exports = {
       colors: {
         'text-color': '#fff',
         'main-blue': '#032234',
-        'gray-bkg': '#e6f7ff',
+        'gray-bkg': '#f3f4f6',
         'other-blue': '#0d4e78',
         'hover-blue': '#256086',
         

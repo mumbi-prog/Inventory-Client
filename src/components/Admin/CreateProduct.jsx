@@ -78,7 +78,7 @@ function CreateProduct() {
     };
 
     return (
-        <div className='sect-container mt-[20px]'>
+        <div className='sect-container mt-[20px] bg-transparent'>
             <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Create Products</h1>
             <div className="form-container">
                 <form className="product-form" onSubmit={handleSubmit}>
