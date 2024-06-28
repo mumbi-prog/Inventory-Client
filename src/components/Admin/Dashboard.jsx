@@ -160,7 +160,12 @@ function Dashboard() {
     }
   };
 
-  
+  const goToNextPage = () => {
+    const totalPages = Math.ceil(filteredProducts.length / prodsPerPage);
+    if (currentPage < totalPages){
+      setCurrentPage(currentPage + 1)
+    }
+  }
 
   return (
     <div className='sect-container mt-[20px]'>
