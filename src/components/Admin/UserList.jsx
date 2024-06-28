@@ -106,7 +106,8 @@ function UserList() {
     const filteredUsers = userDetails.filter(user =>
         user.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchTerm.toLowerCase())
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.department.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const startIndex = (currentPage - 1) * usersPerPage;
@@ -129,11 +130,12 @@ function UserList() {
     return (
         <div className='sect-container mt-[20px]'>
             <h4 className='comp-title text-hover-blue font-bold capitalize mb-[15px]'>All Users</h4>
-            <div className="search-container p-[5px] mt-[3px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center">
-                <input
-                    type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] font-light font-playfair text-sm bg-transparent"
-                    placeholder="Search by name or email" value={searchTerm} onChange={handleSearchChange} />
-            </div> 
+           
+            <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
+                <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
+                placeholder="Search by name/ email department" value={searchTerm} onChange={handleSearchChange}/>
+            </div>
+
             <div className="users-table-container rounded-md bg-gray-100 py-[20px] px-[50px] inline-block mt-[15px]">
                 <div className="users-table flex">
                     <table>
