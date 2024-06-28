@@ -64,13 +64,13 @@ function CreateUser() {
                     </div>
                     <div className="form-group mb2 mb-[10px]">
                         <label htmlFor="last_name" className='label text-sm font-medium text-gray-700'>Last Name</label> 
-                        <input className='input mt-3 p-2 rounded-md bg-gray-bkg focus:outline-none'
+                        <input className='input mt-3 p-2 rounded-md bg-light-blue focus:outline-none'
                             type="text" placeholder='Last Name' name="last_name" value={userDeets.last_name} onChange={handleInputChange} required
                         />
                     </div>
                     <div className="form-group mb2 mb-[10px]">
                         <label htmlFor="email" className='label text-sm font-medium text-gray-700'>Email</label>
-                        <input className='input mt-3 p-2 rounded-md bg-gray-bkg focus:outline-none'
+                        <input className='input mt-3 p-2 rounded-md bg-light-blue focus:outline-none'
                             type="text" placeholder='Email' name="email" value={userDeets.email} onChange={handleInputChange} required
                         />
                     </div> 
@@ -80,7 +80,7 @@ function CreateUser() {
                                 name="department"
                                 value={userDeets.department}
                                 onChange={handleCategoryChange}
-                                className="input mt-3 p-2 rounded-md bg-gray-bkg focus:outline-none"
+                                className="input mt-3 p-2 rounded-md bg-light-blue focus:outline-none"
                                 required
                             >
                                 <option value="">Select department</option>
