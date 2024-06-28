@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './comp-specific.css'
 
 function UpdateUserModal({onClose, onUpdate, userData}) {
-    const[formData, setFormData] = useState(userData);
+    const [formData, setFormData] = useState(userData);
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;

@@ -98,19 +98,35 @@ function Dashboard() {
   }
 
   // update function
-  const confirmUpdateProduct = async(updatedProductData) => {
-    try{
-      const response = await api.patch(`/products/${prodToUpdate.id}`, updatedProductData);
-      if (response.status === 200) {
-          console.log('Product updated successfully')
-      } else {
-        console.log('Failed to update product')
-      }
-    }
-    catch(error){
-      console.error('Error occured while updating product', error)
-    }
-  }
+   const handleUpdateProd = (updatedProdData) => {
+        api
+            .patch(`/products/${prodToUpdate.id}`, updatedProdData)
+            .then((response) => {
+                if (response.status === 200) {
+                    api.get(`http://localhost:3000/products/${prodToUpdate.id}`)
+                        .then((response) => {
+                            if (response.status === 200) {
+                                setProducts((prevProds) =>
+                                    prevProds.map((prod) =>
+                                        prod.id === prodToUpdate.id ? { ...prod, ...response.data } : prod
+                                    )
+                                );
+                                closeUpdateModal();
+                            } else {
+                                console.error('Failed to fetch updated user details');
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error fetching updated user details:', error);
+                        });
+                } else {
+                    console.error('Failed to update user');
+                }
+            })
+            .catch((error) => {
+                console.error('Error updating user:', error);
+            });
+    };
 
   // delete function
   const confirmDeleteProduct = async(product) => {
@@ -192,6 +208,11 @@ function Dashboard() {
           </table>
         </div>
       </div>
+              {isUpdateModalOpen && (
+                <UpdateProdModal onClose={closeUpdateModal} onUpdate={handleUpdateProd} prodData={prodToUpdate} />
+              )
+
+              }
                {isDeleteModalOpen && (
                 <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteProduct(prodToDelete)} userData={prodToDelete}/>
             )}

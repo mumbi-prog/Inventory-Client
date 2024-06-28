@@ -8,7 +8,6 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
   const [selectedUser, setSelectedUser] = useState(formData.user_id);
 
   useEffect(() => {
-    // Fetch users and set initial form data
     const fetchUsers = async () => {
       try {
         const response = await api.get("http://localhost:3000/users");
@@ -41,7 +40,7 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
     e.preventDefault();
     const updatedProductData = {
       ...formData,
-      user_id: selectedUser // Assign selected user to product
+      user_id: selectedUser 
     };
 
     try {
