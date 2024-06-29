@@ -89,6 +89,7 @@ function CreateProduct() {
                     <div className="form-group">
                         <label htmlFor="category" className='label text-sm font-medium text-gray-700'>Category</label>
                         <select type="text" placeholder='Category' name='category' value={productDeets.category} onChange={handleInputChange} required>   
+                            <option value="null">Select Product Category</option>
                             <option value="desktop">Desktop</option>
                             <option value="phone">Phone</option>
                             <option value="modem">Modem</option>

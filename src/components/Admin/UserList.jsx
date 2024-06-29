@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import api from '../Api/api.jsx';
-import './comp-specific.css';
 import UpdateUserModal from './UpdateUserModal.jsx';
 import DeleteConfirmationModal from './DeleteConfirmationModal.jsx';
+import UserDetailsModal from './UserDetailsModal.jsx';
+
 import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBinLine } from "react-icons/ri";
+import './comp-specific.css'
 
 function UserList() {
     const [userDetails, setUserDetails] = useState([]);
@@ -14,6 +16,8 @@ function UserList() {
     const [userToDelete, setUserToDelete] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedUser, setSelectedUser] = useState(null); 
+
     const usersPerPage = 9;
 
     useEffect(() => {
@@ -127,6 +131,14 @@ function UserList() {
         }
     };
 
+    const openUserDetailsModal = (user) => {
+        setSelectedUser(user);
+    };
+
+    const closeUserDetailsModal = () => {
+        setSelectedUser(null); 
+    };
+
     return (
         <div className='sect-container mt-[20px]'>
             <h4 className='comp-title text-hover-blue font-bold capitalize mb-[15px]'>All Users</h4>
@@ -150,7 +162,7 @@ function UserList() {
                         <tbody>
                             {paginatedUsers.map((user, index) => (
                                 <tr key={index} className='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
-                                    <td className='py-[10px] px-[20px]'>{user.first_name} {user.last_name}</td>
+                                    <td className='py-[10px] px-[20px]' onClick={() => openUserDetailsModal(user)} style={{ cursor: 'pointer' }}>{user.first_name} {user.last_name}</td>
                                     <td className='py-[10px] px-[30px]'>{user.email}</td>
                                     <td className='py-[10px] px-[30px]'>{user.department}</td>
                                     <td className='py-[10px] px-[30px]'>
@@ -165,11 +177,17 @@ function UserList() {
                     </table>
                 </div>
             </div>
+
             {isUpdateModalOpen && (
                 <UpdateUserModal onClose={closeUpdateModal} onUpdate={handleUpdateUser} userData={userToUpdate} />
             )}
             {isDeleteModalOpen && (
                 <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteUser(userToDelete)} userData={userToDelete}/>
+            )}
+
+            {/* UserDetailsModal component */}
+            {selectedUser && (
+                <UserDetailsModal isOpen={true} onClose={closeUserDetailsModal} user={selectedUser} />
             )}
 
             <div className="pagination flex justify-center items-center my-[5px]">
