@@ -141,7 +141,7 @@ const UserDetailsModal = ({ isOpen, onClose, user }) => {
           </div>
           <div className="flex justify-center mt-5">
             <button onClick={handleDownloadPDF} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download PDF</button>
-            <button onClick={onClose} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400"> Cancel </button> 
+            <button onClick={onClose} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400 mx-[40px]"> Close </button> 
           </div>
         </div>
       </div>
