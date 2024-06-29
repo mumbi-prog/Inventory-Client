@@ -27,6 +27,68 @@
     font-size: 17px;
 }
 
+/* USER PRODUCTS MODAL */
+.download-btn {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #17795E;
+    background-color: #209978;
+    overflow: hidden;
+}
+
+.download-btn,
+.button__icon,
+.button__text {
+    transition: all 0.3s;
+}
+
+.download-btn .button__text {
+    transform: translateX(22px);
+    color: #fff;
+    font-weight: 600;
+}
+
+.download-btn .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #17795E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-btn .svg {
+    width: 20px;
+    fill: #fff;
+}
+
+.download-btn:hover {
+    background: #17795E;
+}
+
+.download-btn:hover .button__text {
+    color: transparent;
+}
+
+.download-btn:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+}
+
+.download-btn:active .button__icon {
+    background-color: #146c54;
+}
+
+.download-btn:active {
+    border: 1px solid #146c54;
+}
+
 /* RESPOSIVENESS */
 @media  screen and (max-width: 1053px) {
     .dashcards-container {
