@@ -252,7 +252,7 @@ function Dashboard() {
                         <button
                             key={index}
                             onClick={() => setCurrentPage(index + 1)}
-                            className={`page-button-num mx-[5px] ${currentPage === index + 1 ? 'active' : ''}`}
+                            className={`page-button-num border-l-4 mx-[5px] ${currentPage === index + 1 ? 'active' : ''}`}
                         >
                             {index + 1}
                         </button>
