@@ -109,17 +109,17 @@ const UserDetailsModal = ({ isOpen, onClose, user }) => {
       <div className='modal-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex justify-center items-center z-50'>
         <div className='modal-content bg-white border border-gray-300 rounded-md p-5 shadow-md text-left'>
           <h2 className='font-bold text-[25px] text-text-color text-center w-full bg-main-blue py-[15px]'>User Products Report</h2>
-          <div className="user-info py-[15px] text-[16px] ">
+          <div className="user-info py-[15px] text-[16px] font-playfair">
             <div className="fname flex ">
-              <p className='w-[150px]'><strong>Full Name</strong></p>
+              <p className='w-[150px] font-bold'><strong>Full Name</strong></p>
               <p>{user.first_name} {user.last_name}</p>
             </div>
             <div className="email flex">
-              <p className='w-[150px]'><strong>Email</strong></p>
+              <p className='w-[150px] font-bold'><strong>Email</strong></p>
               <p>{user.email}</p>
             </div>
             <div className="department flex">
-              <p className='w-[150px]'><strong>Department</strong></p>
+              <p className='w-[150px] font-bold'><strong>Department</strong></p>
               <p>{user.department}</p>
             </div>
           </div>
