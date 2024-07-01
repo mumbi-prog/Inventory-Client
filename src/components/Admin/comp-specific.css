@@ -89,6 +89,35 @@
     border: 1px solid #146c54;
 }
 
+/* pagination buttons */
+.page-button-num {
+    transition: all 0.3s ease-in-out;
+    font-family: "Dosis", sans-serif;
+}
+
+.page-button-num {
+    width: fit-content;
+    padding: 5px;
+    margin: 10px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgb(2, 51, 92);
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+}
+
+.page-button-num:hover {
+    transform: translateY(3px);
+    box-shadow: none;
+}
+
+.page-button-num:active {
+    opacity: 0.5;
+}
+
 /* RESPOSIVENESS */
 @media  screen and (max-width: 1053px) {
     .dashcards-container {

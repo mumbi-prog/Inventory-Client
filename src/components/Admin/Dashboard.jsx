@@ -5,6 +5,7 @@ import UpdateProdModal from './UpdateProdModal.jsx';
 import { CiEdit } from 'react-icons/ci';
 import DeleteConfirmationModal from './DeleteConfirmationModal.jsx';
 import { RiDeleteBinLine } from "react-icons/ri";
+import { FcNext, FcPrevious } from 'react-icons/fc';
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -243,7 +244,7 @@ function Dashboard() {
                     disabled={currentPage === 1}
                     className="prev-next "
                 >
-                    Previous
+                    <FcPrevious />
                 </button>
                 {Array.from(
                     { length: Math.ceil(filteredProducts.length / prodsPerPage) },
@@ -262,7 +263,7 @@ function Dashboard() {
                     disabled={currentPage === Math.ceil(filteredProducts.length / prodsPerPage)}
                     className="prev-next"
                 >
-                    Next
+                    <FcNext />
                 </button>
             </div>
     </div>

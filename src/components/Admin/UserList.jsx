@@ -7,6 +7,7 @@ import UserDetailsModal from './UserDetailsModal.jsx';
 import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBinLine } from "react-icons/ri";
 import './comp-specific.css'
+import { FcNext, FcPrevious } from 'react-icons/fc';
 
 function UserList() {
     const [userDetails, setUserDetails] = useState([]);
@@ -196,7 +197,7 @@ function UserList() {
                     disabled={currentPage === 1}
                     className="prev-next "
                 >
-                    Previous
+                    <FcPrevious />
                 </button>
                 {Array.from(
                     { length: Math.ceil(filteredUsers.length / usersPerPage) },
@@ -215,7 +216,7 @@ function UserList() {
                     disabled={currentPage === Math.ceil(filteredUsers.length / usersPerPage)}
                     className="prev-next"
                 >
-                    Next
+                    <FcNext />
                 </button>
             </div>
         </div>
