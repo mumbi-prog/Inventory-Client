@@ -12,7 +12,14 @@ const UserDetailsModal = ({ isOpen, onClose, user }) => {
   const handleDownloadPDF = () => {
     const content = document.getElementById('modal-content');
 
-    html2canvas(content).then(canvas => {
+    const buttons = content.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.style.display = 'none';
+    });
+
+    html2canvas(content, {
+      scale: 2, 
+    }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'px', 'a4');
       const imgWidth = pdf.internal.pageSize.getWidth();
@@ -21,16 +28,20 @@ const UserDetailsModal = ({ isOpen, onClose, user }) => {
       let position = 20;
 
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pdf.internal.pageSize.getHeight();
+      heightLeft -= pdf.internal.pageSize.getHeight();
 
-        while (heightLeft > 0) {
-          position -= pdf.internal.pageSize.getHeight();
-          pdf.addPage();
-          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-          heightLeft -= pdf.internal.pageSize.getHeight();
-        }
+      while (heightLeft > 0) {
+        position -= pdf.internal.pageSize.getHeight();
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pdf.internal.pageSize.getHeight();
+      }
 
       pdf.save('user_products.pdf');
+
+      buttons.forEach(button => {
+        button.style.display = '';
+      });
     });
   };
 
