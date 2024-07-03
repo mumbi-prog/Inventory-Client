@@ -15,21 +15,20 @@ const UserDetailsModal = ({ isOpen, onClose, user }) => {
     html2canvas(content).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'px', 'a4');
-      const imgWidth = 210;
-      const pageHeight = 295;
+      const imgWidth = pdf.internal.pageSize.getWidth();
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       let heightLeft = imgHeight;
-      let position = 0;
+      let position = 20;
 
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+        heightLeft -= pdf.internal.pageSize.getHeight();
 
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
+        while (heightLeft > 0) {
+          position -= pdf.internal.pageSize.getHeight();
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pdf.internal.pageSize.getHeight();
+        }
 
       pdf.save('user_products.pdf');
     });
