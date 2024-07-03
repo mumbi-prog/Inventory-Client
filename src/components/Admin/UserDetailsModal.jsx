@@ -37,7 +37,8 @@ const UserDetailsModal = ({ isOpen, onClose, user }) => {
         heightLeft -= pdf.internal.pageSize.getHeight();
       }
 
-      pdf.save('user_products.pdf');
+      pdf.save(`${user.first_name} ${user.last_name} products.pdf`);
+      // pdf.save('User Products.pdf');
 
       buttons.forEach(button => {
         button.style.display = '';
