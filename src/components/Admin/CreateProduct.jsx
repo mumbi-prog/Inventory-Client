@@ -53,7 +53,7 @@ function CreateProduct() {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await api.post("http://localhost:3000/products", productDeets);
+            const response = await api.post("/products", productDeets);
             if (response.status === 201) {
                 console.log("Product created successfully!");
                 setProductDeets({

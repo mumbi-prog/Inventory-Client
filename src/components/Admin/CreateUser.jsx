@@ -32,7 +32,7 @@ function CreateUser() {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         try {
-            const response = await api.post("http://localhost:3000/users", userDeets);
+            const response = await api.post("/users", userDeets);
             if (response.status === 201) { 
                 console.log("User created successfully");
                 setUserDeets({

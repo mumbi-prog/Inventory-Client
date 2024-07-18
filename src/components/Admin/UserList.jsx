@@ -62,7 +62,7 @@ function UserList() {
             .patch(`/users/${userToUpdate.id}`, updatedUserData)
             .then((response) => {
                 if (response.status === 200) {
-                    api.get(`http://localhost:3000/users/${userToUpdate.id}`)
+                    api.get(`/users/${userToUpdate.id}`)
                         .then((response) => {
                             if (response.status === 200) {
                                 setUserDetails((prevUsers) =>

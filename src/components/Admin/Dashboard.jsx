@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+ import React, { useState, useEffect } from 'react';
 import api from '../Api/api';
 import './comp-specific.css';
 import UpdateProdModal from './UpdateProdModal.jsx';
@@ -73,22 +73,39 @@ function Dashboard() {
     setSearchTerm(product.target.value);
   };
 
+  // Filter products based on the search term
   const filteredProducts = products.filter(product =>
     product.serial_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // update modal
+  // PAGINATION 
+  const startIndex = (currentPage - 1) * prodsPerPage;
+  const endIndex = startIndex + prodsPerPage;
+  const paginatedProds = filteredProducts.slice(startIndex, endIndex);
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    const totalPages = Math.ceil(filteredProducts.length / prodsPerPage);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   const openUpdateModal = (product) => {
     setIsUpdateModalOpen(true);
     setProdToUpdate(product);
   }
-  
+
   const closeUpdateModal = () => {
     setIsUpdateModalOpen(false);
     setProdToUpdate(null);
   }
-  // delete modal
 
   const openDeleteModal = (product) => {
     setIsDeleteModalOpen(true);
@@ -100,78 +117,55 @@ function Dashboard() {
     setProdToDelete(null);
   }
 
-  // update function
-   const handleUpdateProd = (updatedProdData) => {
-        api
-            .patch(`/products/${prodToUpdate.id}`, updatedProdData)
+  const handleUpdateProd = (updatedProdData) => {
+    api
+      .patch(`/products/${prodToUpdate.id}`, updatedProdData)
+      .then((response) => {
+        if (response.status === 202) {
+          api.get(`/products/${prodToUpdate.id}`)
             .then((response) => {
-                if (response.status === 202) {
-                    api.get(`http://localhost:3000/products/${prodToUpdate.id}`)
-                        .then((response) => {
-                            if (response.status === 200) {
-                                setProducts((prevProds) =>
-                                    prevProds.map((prod) =>
-                                        prod.id === prodToUpdate.id ? { ...prod, ...response.data } : prod
-                                    )
-                                );
-                                closeUpdateModal();
-                            } else {
-                                console.error('Failed to fetch updated prouct details');
-                            }
-                        })
-                        .catch((error) => {
-                            console.error('Error fetching updated product details:', error);
-                        });
-                } else {
-                    console.error('Failed to update user');
-                }
+              if (response.status === 200) {
+                setProducts((prevProds) =>
+                  prevProds.map((prod) =>
+                    prod.id === prodToUpdate.id ? { ...prod, ...response.data } : prod
+                  )
+                );
+                closeUpdateModal();
+              } else {
+                console.error('Failed to fetch updated product details');
+              }
             })
             .catch((error) => {
-                console.error('Error updating user:', error);
+              console.error('Error fetching updated product details:', error);
             });
-    };
-
-  // delete function
-  const confirmDeleteProduct = async(product) => {
-    try{
-      const response = await api.delete(`/products/${product.id}`);
-        if (response.status === 204) {
-          console.log("Deleted user successfully!");
-          setProducts((prevProducts) => prevProducts.filter((e) => e.id !==product.id));
-          setIsDeleteModalOpen(false); 
-          setProdToDelete(null);
+        } else {
+          console.error('Failed to update product');
         }
-        else {
-          console.log('Unable to delete product');
-        }
-    }
-    catch(error){
-      console.error('Error occured while deleting product', error);
-    }
-  }
-
-  // PAGINATION 
-  const startIndex = (currentPage - 1) * prodsPerPage;
-  const endIndex = startIndex + prodsPerPage;
-  const paginatedProds = filteredProducts.slice(startIndex, endIndex);
-
-  const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage -1)
-    }
+      })
+      .catch((error) => {
+        console.error('Error updating product:', error);
+      });
   };
 
-  const goToNextPage = () => {
-    const totalPages = Math.ceil(filteredProducts.length / prodsPerPage);
-    if (currentPage < totalPages){
-      setCurrentPage(currentPage + 1)
+  const confirmDeleteProduct = async (product) => {
+    try {
+      const response = await api.delete(`/products/${product.id}`);
+      if (response.status === 204) {
+        console.log("Deleted product successfully!");
+        setProducts((prevProducts) => prevProducts.filter((e) => e.id !== product.id));
+        setIsDeleteModalOpen(false);
+        setProdToDelete(null);
+      } else {
+        console.log('Unable to delete product');
+      }
+    } catch (error) {
+      console.error('Error occurred while deleting product', error);
     }
   }
 
   return (
     <div className='sect-container mt-[20px]'>
       <h1 className='comp-title text-hover-blue font-bold capitalize text-3xl mb-[15px]'>Overview</h1>
-      
 
       <div className="dashcards-container font-dm-sans">
         <div className="prod-card bg-rose-600 flex flex-col justify-center justify-around items-center text-center py-[10px] w-[230px] hover:bg-rose-700">
@@ -188,13 +182,12 @@ function Dashboard() {
         </div>
       </div>
 
-    <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
+      <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
         <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
-        placeholder="Search by serial number or category" value={searchTerm} onChange={handleSearchChange}/>
-    </div> 
+          placeholder="Search by serial number or category" value={searchTerm} onChange={handleSearchChange} />
+      </div> 
 
-    <div className="products-table-container rounded-md bg-gray-100 py-[20px] px-[20px] inline-block mt-[15px]">
-      
+      <div className="products-table-container rounded-md bg-gray-100 py-[20px] px-[20px] inline-block mt-[15px]">
         <div className="products-table">
           <table className="prod-container">
             <thead>
@@ -229,43 +222,41 @@ function Dashboard() {
           </table>
         </div>
       </div>
-              {isUpdateModalOpen && (
-                <UpdateProdModal onClose={closeUpdateModal} onUpdate={handleUpdateProd} prodData={prodToUpdate} />
-              )
+      {isUpdateModalOpen && (
+        <UpdateProdModal onClose={closeUpdateModal} onUpdate={handleUpdateProd} prodData={prodToUpdate} />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteProduct(prodToDelete)} userData={prodToDelete} />
+      )}
 
-              }
-               {isDeleteModalOpen && (
-                <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteProduct(prodToDelete)} userData={prodToDelete}/>
-            )}
-
-            <div className="pagination flex justify-center items-center my-[5px]">
-                <button
-                    onClick={goToPreviousPage}
-                    disabled={currentPage === 1}
-                    className="prev-next "
-                >
-                    <FcPrevious />
-                </button>
-                {Array.from(
-                    { length: Math.ceil(filteredProducts.length / prodsPerPage) },
-                    (_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => setCurrentPage(index + 1)}
-                            className={`page-button-num border-l-4 mx-[5px] ${currentPage === index + 1 ? 'active' : ''}`}
-                        >
-                            {index + 1}
-                        </button>
-                    )
-                )}
-                <button
-                    onClick={goToNextPage}
-                    disabled={currentPage === Math.ceil(filteredProducts.length / prodsPerPage)}
-                    className="prev-next"
-                >
-                    <FcNext />
-                </button>
-            </div>
+      <div className="pagination flex justify-center items-center my-[5px]">
+        <button
+          onClick={goToPreviousPage}
+          disabled={currentPage === 1}
+          className="prev-next "
+        >
+          <FcPrevious />
+        </button>
+        {Array.from(
+          { length: Math.ceil(filteredProducts.length / prodsPerPage) },
+          (_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`page-button-num border-l-4 mx-[5px] ${currentPage === index + 1 ? 'active' : ''}`}
+            >
+              {index + 1}
+            </button>
+          )
+        )}
+        <button
+          onClick={goToNextPage}
+          disabled={currentPage === Math.ceil(filteredProducts.length / prodsPerPage)}
+          className="prev-next"
+        >
+          <FcNext />
+        </button>
+      </div>
     </div>
   );
 }
