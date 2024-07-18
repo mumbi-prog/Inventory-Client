@@ -63,11 +63,11 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
         <div className='modal-content bg-white border border-gray-300 rounded-md p-5 w-[450px] shadow-md text-left'>
           <form onSubmit={handleSubmit} className="prod-details block">
               <div className="form-group">
-                <label htmlFor="serial_number">Serial Number</label>
+                <label htmlFor="serial_number" className='label text-sm font-medium text-gray-700'>Serial Number</label>
                 <input type="text" placeholder='Serial Number' name='serial_number' value={formData.serial_number} onChange={handleInputChange} required/>
               </div>
               <div className="form-group">
-                <label htmlFor="category">Category</label>
+                <label htmlFor="category" className='label text-sm font-medium text-gray-700'>Category</label>
                 <select type="text" placeholder='Category' name='category' value={formData.category} onChange={handleInputChange}>
                   <option value="desktop">Desktop</option>
                   <option value="phone">Phone</option>
@@ -75,25 +75,26 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name" className='label text-sm font-medium text-gray-700'>Name</label>
                 <input type="text" placeholder='Name' name='name' value={formData.name} onChange={handleInputChange} required/>
               </div>
               <div className="form-group">
-                <label htmlFor="unit-price">Unit Price</label>
+                <label htmlFor="unit-price" className='label text-sm font-medium text-gray-700'>Unit Price</label>
                 <input type="text" placeholder='Unit Price' name='unit_price' value={formData.unit_price} onChange={handleInputChange}/>
               </div>
               <div className="form-group">
-                <label htmlFor="date">Date Bought</label>
+                <label htmlFor="date" className='label text-sm font-medium text-gray-700'>Date Bought</label>
                 <input type="date" placeholder='Date Bought' name='date_bought' value={formData.date_bought} onChange={handleInputChange} />
               </div>
               <div className="form-group">
+                <label htmlFor='status' className='label text-sm font-medium text-gray-700'>Status</label>
                 <select name="status" id="status">
                   <option value="assigned">Assigned</option>
                   <option value="available">Available</option>
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="user">Assign User</label>
+                <label htmlFor="user" className='label text-sm font-medium text-gray-700'>Assign User</label>
                 <select name="user" id="user" value={selectedUser} onChange={handleUserChange} >
                   {users.map((user) => (
                     <option key={user.id} value={user.id}>

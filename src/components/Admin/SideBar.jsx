@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaBars } from 'react-icons/fa'; 
 import { FiUsers } from "react-icons/fi";
 import { Link } from 'react-scroll';
-import logo from '../../images/logo.png';
+import logo from '../../images/snest-logo.png';
 import '../Admin/admin.css'
 import api from '../Api/api.jsx'
 import { TbLogout2 } from 'react-icons/tb';
