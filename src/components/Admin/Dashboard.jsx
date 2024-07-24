@@ -57,19 +57,38 @@ function Dashboard() {
         const assignedProductsCount = productsData.filter(product => product.user_id).length;
         setTotalAssignedProducts(assignedProductsCount);
 
-        const uniqueUserIds = [...new Set(userIds)];
-        setTotalUsers(uniqueUserIds.length);
+        // const uniqueUserIds = [...new Set(userIds)];
+        // setTotalUsers(uniqueUserIds.length);
       } else {
         console.log("Can't fetch products", productResponse.status);
       }
     } catch (error) {
       console.error("Error fetching products:", error);
     }
-  }, []); // Empty dependency array since no external dependencies
+  }, []);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  //fetching users
+  useEffect(() => {
+    const fetchTotalUsers = async () => {
+      try {
+        const response = await api.get("http://localhost:3000/users");
+        if (response.status === 200) {
+          setTotalUsers(response.data.length);
+        } else {
+          console.log("Error fetching users", response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchTotalUsers();
+  }, []);
+
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
