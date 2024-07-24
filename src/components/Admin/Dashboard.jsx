@@ -6,6 +6,7 @@ import { CiEdit } from 'react-icons/ci';
 import DeleteConfirmationModal from './DeleteConfirmationModal.jsx';
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FcNext, FcPrevious } from 'react-icons/fc';
+import { WiRefresh } from 'react-icons/wi';
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -183,11 +184,22 @@ function Dashboard() {
           <p>{totalUsers}</p>
         </div>
       </div>
+ 
+      <div className="helper-tools flex">
+            <div className="refresh-button-container mt-[15px]  flex justify-center">
+                <button onClick={() => window.location.reload()}
+                  className="refresh-button border border-blue-500 text-white py-[3px] px-[3px] rounded-full hover:border-blue-900"
+                >
+                  <WiRefresh className='text-blue-800 text-3xl'/>
+                </button>
+            </div>
 
-      <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
-        <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
-          placeholder="Search by serial number or category" value={searchTerm} onChange={handleSearchChange} />
-      </div> 
+          <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
+            <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
+              placeholder="Search by serial number or category" value={searchTerm} onChange={handleSearchChange} />
+          </div> 
+      </div>
+     
 
       <div className="products-table-container rounded-md bg-gray-100 py-[20px] px-[20px] inline-block mt-[15px]">
         <div className="products-table">
