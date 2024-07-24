@@ -8,6 +8,7 @@ import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBinLine } from "react-icons/ri";
 import './comp-specific.css'
 import { FcNext, FcPrevious } from 'react-icons/fc';
+import { WiRefresh } from 'react-icons/wi';
 
 function UserList() {
     const [userDetails, setUserDetails] = useState([]);
@@ -144,10 +145,21 @@ function UserList() {
         <div className='sect-container mt-[20px]'>
             <h4 className='comp-title text-hover-blue font-bold capitalize mb-[15px]'>All Users</h4>
            
-            <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
-                <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
-                placeholder="Search by name/ email department" value={searchTerm} onChange={handleSearchChange}/>
-            </div>
+           <div className="helper-tools flex">
+                <div className="refresh-button-container mt-[15px]  flex justify-center">
+                    <button onClick={() => window.location.reload()}
+                    className="refresh-button border border-blue-500 text-white py-[3px] px-[3px] rounded-full hover:border-blue-900"
+                    >
+                    <WiRefresh className='text-blue-800 text-3xl'/>
+                    </button>
+                </div>
+
+                <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
+                    <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
+                    placeholder="Search by name/ email department" value={searchTerm} onChange={handleSearchChange}/>
+                </div>
+           </div>
+            
 
             <div className="users-table-container rounded-md bg-gray-100 py-[20px] px-[50px] inline-block mt-[15px]">
                 <div className="users-table flex">
