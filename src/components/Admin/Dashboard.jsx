@@ -24,37 +24,39 @@ function Dashboard() {
   const [prodToDelete, setProdToDelete] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const productResponse = await api.get("http://localhost:3000/products");
-        if (productResponse.status === 202) {
-          setProducts(productResponse.data);
-          setTotalProducts(productResponse.data.length);
+  const fetchData = async () => {
+    try {
+      const productResponse = await api.get("http://localhost:3000/products");
+      if (productResponse.status === 202) {
+        const productsData = productResponse.data;
+        setProducts(productsData);
+        setTotalProducts(productsData.length);
 
-          const userIds = productResponse.data.map(product => product.user_id);
-          const userNamesPromises = userIds.map(userId => fetchUserName(userId));
-          const userNamesArray = await Promise.all(userNamesPromises);
-          const userNamesMap = userIds.reduce((acc, userId, index) => {
-            acc[userId] = userNamesArray[index];
-            return acc;
-          }, {});
-          setUserNames(userNamesMap);
+        const userIds = productsData.map(product => product.user_id);
+        const userNamesPromises = userIds.map(userId => fetchUserName(userId));
+        const userNamesArray = await Promise.all(userNamesPromises);
+        const userNamesMap = userIds.reduce((acc, userId, index) => {
+          acc[userId] = userNamesArray[index];
+          return acc;
+        }, {});
+        setUserNames(userNamesMap);
 
-          const assignedProductsCount = productResponse.data.filter(product => product.status === 'assigned').length;
-          setTotalAssignedProducts(assignedProductsCount);
+        const assignedProductsCount = productsData.filter(product => product.user_id).length;
+        setTotalAssignedProducts(assignedProductsCount);
 
-          const uniqueUserIds = [...new Set(userIds)];
-          setTotalUsers(uniqueUserIds.length);
-        } else {
-          console.log("Can't fetch products", productResponse.status);
-        }
-      } catch (error) {
-        console.error("Error fetching products:", error);
+        const uniqueUserIds = [...new Set(userIds)];
+        setTotalUsers(uniqueUserIds.length);
+      } else {
+        console.log("Can't fetch products", productResponse.status);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
+
 
   const fetchUserName = async (userId) => {
     try {
