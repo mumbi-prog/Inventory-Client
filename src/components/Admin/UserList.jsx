@@ -6,7 +6,7 @@ import UserDetailsModal from './UserDetailsModal.jsx';
 
 import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBinLine } from "react-icons/ri";
-import './comp-specific.css'
+import './comp-specific.css';
 import { FcNext, FcPrevious } from 'react-icons/fc';
 import { WiRefresh } from 'react-icons/wi';
 
@@ -22,19 +22,20 @@ function UserList() {
 
     const usersPerPage = 9;
 
-    useEffect(() => {
-        const fetchUserList = async () => {
-            try {
-                const response = await api.get("http://localhost:3000/users");
-                if (response.status === 200) {
-                    setUserDetails(response.data);
-                } else {
-                    console.log("Error fetching users", response.status);
-                }
-            } catch (error) {
-                console.error('Error fetching users:', error);
+    const fetchUserList = async () => {
+        try {
+            const response = await api.get("http://localhost:3000/users");
+            if (response.status === 200) {
+                setUserDetails(response.data);
+            } else {
+                console.log("Error fetching users", response.status);
             }
-        };
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    };
+
+    useEffect(() => {
         fetchUserList();
     }, []);
 
@@ -147,7 +148,7 @@ function UserList() {
            
            <div className="helper-tools flex">
                 <div className="refresh-button-container mt-[15px]  flex justify-center">
-                    <button onClick={() => window.location.reload()}
+                    <button onClick={fetchUserList}
                     className="refresh-button border border-blue-500 text-white py-[3px] px-[3px] rounded-full hover:border-blue-900"
                     >
                     <WiRefresh className='text-blue-800 text-3xl'/>

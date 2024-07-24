@@ -1,4 +1,4 @@
- import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import api from '../Api/api';
 import './comp-specific.css';
 import UpdateProdModal from './UpdateProdModal.jsx';
@@ -24,8 +24,20 @@ function Dashboard() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [prodToDelete, setProdToDelete] = useState(null);
 
-  useEffect(() => {
-  const fetchData = async () => {
+  const fetchUserName = async (userId) => {
+    try {
+      const response = await api.get(`http://localhost:3000/users/${userId}`);
+      if (response.status === 200) {
+        return `${response.data.first_name} ${response.data.last_name}`;
+      }
+      return " - ";
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+      return " - ";
+    }
+  };
+
+  const fetchData = useCallback(async () => {
     try {
       const productResponse = await api.get("http://localhost:3000/products");
       if (productResponse.status === 202) {
@@ -53,27 +65,14 @@ function Dashboard() {
     } catch (error) {
       console.error("Error fetching products:", error);
     }
-  };
+  }, []); // Empty dependency array since no external dependencies
 
-  fetchData();
-}, []);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
-
-  const fetchUserName = async (userId) => {
-    try {
-      const response = await api.get(`http://localhost:3000/users/${userId}`);
-      if (response.status === 200) {
-        return `${response.data.first_name} ${response.data.last_name}`;
-      }
-      return " - ";
-    } catch (error) {
-      console.error("Error fetching user details:", error);
-      return " - ";
-    }
-  };
-
-  const handleSearchChange = (product) => {
-    setSearchTerm(product.target.value);
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   // Filter products based on the search term
@@ -184,22 +183,21 @@ function Dashboard() {
           <p>{totalUsers}</p>
         </div>
       </div>
- 
-      <div className="helper-tools flex">
-            <div className="refresh-button-container mt-[15px]  flex justify-center">
-                <button onClick={() => window.location.reload()}
-                  className="refresh-button border border-blue-500 text-white py-[3px] px-[3px] rounded-full hover:border-blue-900"
-                >
-                  <WiRefresh className='text-blue-800 text-3xl'/>
-                </button>
-            </div>
 
-          <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
-            <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
-              placeholder="Search by serial number or category" value={searchTerm} onChange={handleSearchChange} />
-          </div> 
+      <div className="helper-tools flex">
+        <div className="refresh-button-container mt-[15px]  flex justify-center">
+          <button onClick={fetchData}
+            className="refresh-button border border-blue-500 text-white py-[3px] px-[3px] rounded-full hover:border-blue-900"
+          >
+            <WiRefresh className='text-blue-800 text-3xl'/>
+          </button>
+        </div>
+
+        <div className="search-container p-[5px] mt-[15px] mb-[5px] h-[35px] w-[300px] flex items-center justify-center ml-[30%]" style={{ justifyContent: 'center' }}>
+          <input type="text" className="search-feature border border-black rounded-md border-none outline-none py-[1px] px-[5px] w-[20px] font-light font-playfair text-sm bg-transparent"  
+            placeholder="Search by serial number or category" value={searchTerm} onChange={handleSearchChange} />
+        </div> 
       </div>
-     
 
       <div className="products-table-container rounded-md bg-gray-100 py-[20px] px-[20px] inline-block mt-[15px]">
         <div className="products-table">
@@ -208,7 +206,7 @@ function Dashboard() {
               <tr>
                 <th className="w-[180px] py-[-5px] px-[0px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Serial Number </th>
                 <th className="w-[170px] py-[-5px] px-[15px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Category </th>
-                <th className="w-[170px] py-[-5px] px-[45px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Name </th>
+                <th className="w-[170px] py-[-5px] px-[10px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Name </th>
                 <th className="w-[50px] py-[-5px] px-[25px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Price </th>
                 <th className="w-[150px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Date </th>
                 <th className="w-[140px] py-[10px] px-[20px] bg-gray-300 text-black font-medium text-center text-sm border-r-[20px]"> Status </th>
