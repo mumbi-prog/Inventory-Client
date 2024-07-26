@@ -33,6 +33,7 @@ function App() {
         <Route path='/main' element={<MainPage />} />
         <Route path='/' element={<AdminLogin/>} />
       </Routes>
+      <hr/>
     </Router>
   );
 }
