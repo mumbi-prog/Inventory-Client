@@ -23,13 +23,24 @@ function UserList() {
     const usersPerPage = 9;
 
     const fetchUserList = async () => {
-        try {
-            const response = await api.get("http://localhost:3000/users");
-            if (response.status === 200) {
-                setUserDetails(response.data);
+    try {
+        const response = await api.get("http://localhost:3000/users");
+        if (response.status === 200) {
+            if (Array.isArray(response.data)) {
+                const sortedUsers = response.data.sort((a, b) => {
+                    const nameA = a.first_name.toUpperCase(); 
+                    const nameB = b.first_name.toUpperCase(); 
+                    if (nameA < nameB) return -1;
+                    if (nameA > nameB) return 1;
+                    return 0;
+                });
+                setUserDetails(sortedUsers);
             } else {
-                console.log("Error fetching users", response.status);
+                console.error("Expected an array but received:", response.data);
             }
+        } else {
+            console.log("Error fetching users", response.status);
+        }
         } catch (error) {
             console.error('Error fetching users:', error);
         }
