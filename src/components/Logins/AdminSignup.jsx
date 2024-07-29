@@ -166,7 +166,7 @@ function AdminSignup() {
       console.log('Signup successful');
       navigate('/login');
     } catch (error) {
-      setError('Unauthorized to log in');
+      setError('Unauthorized to sign up. Please use an authorized email address.');
       console.error('Unauthorized to log in');
     }
   };
