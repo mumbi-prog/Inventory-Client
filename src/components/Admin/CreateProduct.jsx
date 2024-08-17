@@ -125,7 +125,7 @@ function CreateProduct() {
                     </div>
                     {error && <div className="error-message">{error}</div>}
                     <button type="submit" className='btn' disabled={loading}>
-                        {loading ? 'Submitting...' : 'Submit'}
+                        {loading ? 'Submitting...' : 'Create Product'}
                     </button>
                 </form>
             </div>
