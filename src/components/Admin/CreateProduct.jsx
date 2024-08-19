@@ -93,6 +93,9 @@ function CreateProduct() {
                             <option value="desktop">Desktop</option>
                             <option value="phone">Phone</option>
                             <option value="modem">Modem</option>
+                            <option value="monitor">Monitor</option>
+                            <option value="mouse">Mouse</option>
+                            <option value="keyboard">Keyboard</option>
                         </select>
                     </div>
                     <div className="form-group">
