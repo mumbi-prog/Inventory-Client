@@ -89,6 +89,9 @@ function Dashboard() {
     fetchTotalUsers();
   }, []);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
