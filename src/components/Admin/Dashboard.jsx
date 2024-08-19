@@ -240,7 +240,7 @@ function Dashboard() {
               {paginatedProds.map((product, index) => (
                 <tr key={index} className='row-detail border-l-4 border-transparent hover:border-blue-500 p-[20px] text-left hover:bg-blue-100 text-sm'>
                   <td className='py-[10px] px-[10px]'>{product.serial_number}</td>
-                  <td className='py-[10px] px-[25px]'>{product.category}</td>
+                  <td className='py-[10px] px-[25px]'>{capitalizeFirstLetter(product.category)}</td>
                   <td className='py-[10px] px-[25px]'>{product.name}</td>
                   <td className='py-[10px] px-[25px]'>{product.unit_price}</td>
                   <td className='py-[10px] px-[25px]'>{product.date_bought}</td>
