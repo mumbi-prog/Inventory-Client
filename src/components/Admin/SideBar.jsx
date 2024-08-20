@@ -11,8 +11,6 @@ import { VscNewFile } from 'react-icons/vsc';
 import { useNavigate } from 'react-router-dom';
 import { CgUserAdd } from 'react-icons/cg';
 import WelcomeAdmin from './WelcomeAdmin.jsx'
-// import axios from 'axios';
-
 
 function Sidebar({ children, setSelectedOption }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,23 +44,28 @@ function Sidebar({ children, setSelectedOption }) {
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="logo-container flex">
           <div className="second-lc">
-              <div className="lc-cont">
-                <img src={logo} alt="" className="logo" />
-                <h4 className='capitalise'>StockNest</h4>
-              </div>
-              <hr />
-              <WelcomeAdmin />
+            <div className="lc-cont">
+              <img src={logo} alt="" className="logo" />
+              <h4 className='capitalise'>StockNest</h4>
+            </div>
+            <hr />
+            <WelcomeAdmin />
           </div>
           <div className="menu-bars" onClick={toggle}>
             <FaBars />
           </div>
         </div>
-        {navItem.map((item) => (
-          <Link key={item.id} to={item.id} className='link' onClick={() => item.id === 'adminLogout' ? handleLogout() : setSelectedOption(item.id)} activeClassName="active">
-            <div className="icon">{item.icon}</div>
-            <div className="link-text">{item.name}</div>
-          </Link>
-        ))}
+        <div className="nav-links">
+          {navItem.map((item) => (
+            <Link key={item.id} to={item.id} className='link' onClick={() => item.id === 'adminLogout' ? handleLogout() : setSelectedOption(item.id)} activeClassName="active">
+              <div className="icon">{item.icon}</div>
+              <div className="link-text">{item.name}</div>
+            </Link>
+          ))}
+        </div>
+        <footer className="sidebar-footer">
+          <p>&copy; {new Date().getFullYear()} StockNest. All rights reserved. <br />Created by Sylvia Mwangi.</p>
+        </footer>
       </div>
       <main>{children}</main>
     </div>

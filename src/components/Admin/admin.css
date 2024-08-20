@@ -17,6 +17,20 @@ main{
     left: 0;
     top: 0;
     min-width: 210px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-links {
+    flex: 1;
+}
+
+.sidebar-footer {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: #032234;
+    font-size: 11px;
 }
 .logo-container{
     display: flex;
