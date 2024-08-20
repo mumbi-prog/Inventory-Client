@@ -55,7 +55,7 @@ function CreateProduct() {
         try {
             const response = await api.post("/products", productDeets);
             if (response.status === 201) {
-                console.log("Product created successfully!");
+                alert("Product created successfully!");
                 setProductDeets({
                     serial_number: '',
                     category: '',
@@ -67,11 +67,11 @@ function CreateProduct() {
                 });
                 setError('');
             } else {
-                setError("Could not create product.");
+                setError("Could not create product. Try Again.");
             }
         } catch (error) {
             setError("Error creating product.");
-            console.error(error);
+            alert(error);
         } finally {
             setLoading(false);
         }
@@ -126,11 +126,12 @@ function CreateProduct() {
                             ))}
                         </select>
                     </div>
-                    {error && <div className="error-message">{error}</div>}
+                    
                     <button type="submit" className='btn' disabled={loading}>
                         {loading ? 'Submitting...' : 'Create Product'}
                     </button>
                 </form>
+                {error && <div className="error-message text-text-color bg-red-600 p-[20px] semibold rounded-md">{error}</div>}
             </div>
         </div>
     );
