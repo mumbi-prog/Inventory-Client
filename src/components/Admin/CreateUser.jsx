@@ -3,6 +3,8 @@ import api from './../Api/api';
 import './admin.css';
 
 function CreateUser() {
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [userDeets, setUserDeets] = useState({
         first_name: '',
         last_name: '',
@@ -34,18 +36,21 @@ function CreateUser() {
         try {
             const response = await api.post("/users", userDeets);
             if (response.status === 201) { 
-                console.log("User created successfully");
+                alert("User created successfully");
                 setUserDeets({
                     first_name: '',
                     last_name: '',
                     email: '',
                     department: ''
                 });
+            setError('');
             } else {
-                console.log("Can't create User, try again later", response.status);
+                setError("Could not create user. Try Again.");
             }
         } catch (error) {
-            console.error(error); 
+            setError("Could not create user. Try Again.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -93,8 +98,16 @@ function CreateUser() {
 
                     </div>
                     
-                    <button type="submit" className='btn'>Create User</button>
-                </form>
+                     <button type="submit" className='btn' disabled={loading}>
+                        {loading ? 'Submitting...' : 'Create User'}
+                    </button>
+
+                    </form>
+                    {error && (
+                        <div className="error-message z-50 fixed left-[50%] items-center bg-red-600 text-white p-4 rounded-md">
+                            {error}
+                        </div>
+                    )}
             </div>
         </div>
     );
