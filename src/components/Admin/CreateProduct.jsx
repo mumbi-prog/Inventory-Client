@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import api from '../Api/api.jsx'; 
+import api from '../Api/api.jsx';
+
 function CreateProduct() {
     const [productDeets, setProductDeets] = useState({
         serial_number: '',
@@ -8,7 +9,7 @@ function CreateProduct() {
         unit_price: '',
         date_bought: '',
         status: 'Available',
-        user_id: '' 
+        user_id: ''
     });
 
     const [users, setUsers] = useState([]);
@@ -19,11 +20,20 @@ function CreateProduct() {
         fetchUsers();
     }, []);
 
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError('');
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
+
     const fetchUsers = async () => {
         try {
             const response = await api.get("http://localhost:3000/users");
             if (response.status === 200) {
-                setUsers(response.data); 
+                setUsers(response.data);
             } else {
                 setError("Failed to fetch users.");
             }
@@ -88,7 +98,7 @@ function CreateProduct() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="category" className='label text-sm font-medium text-gray-700'>Category</label>
-                        <select type="text" placeholder='Category' name='category' value={productDeets.category} onChange={handleInputChange} required>   
+                        <select type="text" placeholder='Category' name='category' value={productDeets.category} onChange={handleInputChange} required>
                             <option value="null">Select Product Category</option>
                             <option value="phone">Phone</option>
                             <option value="modem">Modem</option>
@@ -131,7 +141,11 @@ function CreateProduct() {
                         {loading ? 'Submitting...' : 'Create Product'}
                     </button>
                 </form>
-                {error && <div className="error-message text-text-color bg-red-600 p-[20px] semibold rounded-md">{error}</div>}
+                {error && (
+                    <div className="error-message z-50 fixed left-[50%] items-center bg-red-600 text-white p-4 rounded-md">
+                        {error}
+                    </div>
+                )}
             </div>
         </div>
     );
