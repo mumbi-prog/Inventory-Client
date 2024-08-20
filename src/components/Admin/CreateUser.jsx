@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import api from './../Api/api'; 
 import './admin.css';
 
@@ -30,6 +30,14 @@ function CreateUser() {
     });
 };
 
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError('');
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
