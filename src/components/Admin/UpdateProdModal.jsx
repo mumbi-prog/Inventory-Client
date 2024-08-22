@@ -79,9 +79,7 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
                <div className="form-group mb-[20px]">
                         <label htmlFor="category" className='label text-sm font-medium text-gray-700'> Category:</label>
                            <select
-                                name="category" value={formData.category} onChange={handleCategoryChange}
-                                className="input mt-2 p-2 rounded-md bg-gray-bkg focus:outline-none" required
-                            >
+                                name="category" value={formData.category} onChange={handleCategoryChange} required>
                                 <option value="">Select category</option>
                                 {CATEGORIES.map((category) => (
                                     <option key={category} value={category}>
