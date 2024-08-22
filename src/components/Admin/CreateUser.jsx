@@ -20,7 +20,7 @@ function CreateUser() {
         });
     };
 
-     const CATEGORIES= ['Stores', 'IT', 'Maintenance', 'Operations', 'Drivers', 'Finance'];
+     const CATEGORIES= ['Stores', 'IT', 'Maintenance', 'Operations', 'Drivers', 'Finance', 'HSSE', 'HR'];
 
     const handleCategoryChange = (e) => {
     const { name, value } = e.target;
