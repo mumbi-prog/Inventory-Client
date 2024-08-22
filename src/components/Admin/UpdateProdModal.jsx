@@ -37,7 +37,13 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
   };
 
    const CATEGORIES = ['Phone', 'Modem', 'Monitor', 'Keyboard', 'Mouse', 'Charger', 'Laptop'];
-  
+      const handleCategoryChange = (e) => {
+        const {name, value} = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        })
+      }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
