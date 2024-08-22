@@ -1,0 +1,13 @@
+.notification-card {
+    bottom: 20px;
+    right: 20px;
+    color: white;
+}
+
+.notification-card.success {
+    background-color: #28a745;
+}
+
+.notification-card.error {
+    background-color: #dc3545;
+}
