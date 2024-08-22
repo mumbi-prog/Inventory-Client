@@ -72,7 +72,7 @@ function CreateProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-         
+        
         const updatedProductData = {
             ...productDeets,
             user_id: productDeets.status === "Available" ? null : productDeets.user_id
@@ -102,6 +102,8 @@ function CreateProduct() {
             setLoading(false);
         }
     };
+
+    const isUserSelectDisabled = productDeets.status === 'Available';
 
     return (
         <div className='sect-container mt-[20px] bg-transparent'>
@@ -144,7 +146,7 @@ function CreateProduct() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="user_id" className='label text-sm font-medium text-gray-700'>Assign to:</label>
-                        <select name="user_id" value={productDeets.user_id} onChange={handleAssignUser}>
+                        <select name="user_id" value={productDeets.user_id} onChange={handleAssignUser} disabled={isUserSelectDisabled}>
                             <option value="">Select user...</option>
                             {users.map(user => (
                                 <option key={user.id} value={user.id}>{`${user.first_name} ${user.last_name}`}</option>
