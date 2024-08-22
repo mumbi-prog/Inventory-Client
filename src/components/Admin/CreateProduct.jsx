@@ -59,7 +59,7 @@ function CreateProduct() {
         });
     };
 
-    const CATEGORIES= ['Phone', 'Modem', 'Monitor', 'Keyboard', 'Mouse', 'Charger', 'Laptop'];
+    const CATEGORIES = ['Phone', 'Modem', 'Monitor', 'Keyboard', 'Mouse', 'Charger', 'Laptop'];
 
     const handleCategoryChange = (e) => {
         const { name, value } = e.target;
@@ -72,8 +72,14 @@ function CreateProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+         
+        const updatedProductData = {
+            ...productDeets,
+            user_id: productDeets.status === "Available" ? null : productDeets.user_id
+        };
+
         try {
-            const response = await api.post("/products", productDeets);
+            const response = await api.post("/products", updatedProductData);
             if (response.status === 201) {
                 alert("Product created successfully!");
                 setProductDeets({
@@ -106,17 +112,16 @@ function CreateProduct() {
                         <label htmlFor="serial_number" className='label text-sm font-medium text-gray-700'>Serial Number</label>
                         <input type="text" placeholder='Serial Number' name='serial_number' value={productDeets.serial_number} onChange={handleInputChange} required />
                     </div>
-                      <div className="form-group">
-                        <label htmlFor="category" className='label text-sm font-medium text-gray-700'> Category:</label>
-                           <select type='text' name="category" value={productDeets.category} onChange={handleCategoryChange}
-                                required>
-                                <option value="">Select Product Category</option>
-                                {CATEGORIES.map((category) => (
-                                    <option key={category} value={category}>
-                                        {category}
-                                    </option>
-                                ))}
-                            </select>
+                    <div className="form-group">
+                        <label htmlFor="category" className='label text-sm font-medium text-gray-700'>Category:</label>
+                        <select type='text' name="category" value={productDeets.category} onChange={handleCategoryChange} required>
+                            <option value="">Select Product Category</option>
+                            {CATEGORIES.map((category) => (
+                                <option key={category} value={category}>
+                                    {category}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="name" className='label text-sm font-medium text-gray-700'>Name</label>
