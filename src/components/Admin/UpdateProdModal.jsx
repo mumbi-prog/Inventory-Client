@@ -36,6 +36,9 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
     setSelectedUser(e.target.value);
   };
 
+   const CATEGORIES = ['Phone', 'Modem', 'Monitor', 'Keyboard', 'Mouse', 'Charger', 'Laptop'];
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedProductData = {
