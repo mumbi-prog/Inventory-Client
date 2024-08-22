@@ -75,17 +75,21 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
                 <label htmlFor="serial_number" className='label text-sm font-medium text-gray-700'>Serial Number</label>
                 <input type="text" placeholder='Serial Number' name='serial_number' value={formData.serial_number} onChange={handleInputChange} required/>
               </div>
-              <div className="form-group">
-                <label htmlFor="category" className='label text-sm font-medium text-gray-700'>Category</label>
-                <select type="text" placeholder='Category' name='category' value={formData.category} onChange={handleInputChange}>
-                            <option value="phone">Phone</option>
-                            <option value="modem">Modem</option>
-                            <option value="monitor">Monitor</option>
-                            <option value="mouse">Mouse</option>
-                            <option value="keyboard">Keyboard</option>
-                            <option value="charger">Charger</option>
-                </select>
-              </div>
+      
+               <div className="form-group mb-[20px]">
+                        <label htmlFor="category" className='label text-sm font-medium text-gray-700'> Category:</label>
+                           <select
+                                name="category" value={formData.category} onChange={handleCategoryChange}
+                                className="input mt-2 p-2 rounded-md bg-gray-bkg focus:outline-none" required
+                            >
+                                <option value="">Select category</option>
+                                {CATEGORIES.map((category) => (
+                                    <option key={category} value={category}>
+                                        {category}
+                                    </option>
+                                ))}
+                            </select>
+                </div>
               <div className="form-group">
                 <label htmlFor="name" className='label text-sm font-medium text-gray-700'>Name</label>
                 <input type="text" placeholder='Name' name='name' value={formData.name} onChange={handleInputChange} required/>
