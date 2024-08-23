@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import './comp-specific.css'
+import NotificationCard from './NotificationCard';
 
 function UpdateUserModal({onClose, onUpdate, userData}) {
     const [formData, setFormData] = useState(userData);
@@ -20,6 +21,7 @@ function UpdateUserModal({onClose, onUpdate, userData}) {
             [name]: value
         })
     }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
