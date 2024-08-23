@@ -7,6 +7,8 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
   const [formData, setFormData] = useState(prodData);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(formData.user_id);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   useEffect(() => {
     const fetchUsers = async () => {
