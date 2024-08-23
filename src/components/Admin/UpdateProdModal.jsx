@@ -27,6 +27,16 @@ function UpdateProdModal({ onClose, onUpdate, prodData }) {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+        if (error || success) {
+            const timer = setTimeout(() => {
+                setError('');
+                setSuccess('');
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+  }, [error, success]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
