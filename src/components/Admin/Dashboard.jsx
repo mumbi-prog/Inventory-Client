@@ -23,6 +23,7 @@ function Dashboard() {
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [prodToDelete, setProdToDelete] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const fetchUserName = async (userId) => {
     try {
