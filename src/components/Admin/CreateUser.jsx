@@ -137,8 +137,8 @@ function CreateUser() {
                     </button>
                 </form>
 
-                {error && <NotificationCard message={error} type="error" className="bg-red-500" />}
-                {success && <NotificationCard message={success} type="success" className="bg-green-500" />}
+                {error && <NotificationCard message={error} type="error"  />}
+                {success && <NotificationCard message={success} type="success"  />}
             </div>
         </div>
     );
