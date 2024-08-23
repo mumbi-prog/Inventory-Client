@@ -4,6 +4,8 @@ import NotificationCard from './NotificationCard';
 
 function UpdateUserModal({onClose, onUpdate, userData}) {
     const [formData, setFormData] = useState(userData);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
