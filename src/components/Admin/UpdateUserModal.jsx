@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './comp-specific.css'
 import NotificationCard from './NotificationCard';
 
@@ -24,6 +24,15 @@ function UpdateUserModal({onClose, onUpdate, userData}) {
         })
     }
 
+    useEffect(() => {
+        if (error || success) {
+        const timer = setTimeout(() => {
+            setError('');
+            setSuccess('');
+        }, 3000);
+        return () => clearTimeout(timer);
+        }
+    }, [error, success]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
