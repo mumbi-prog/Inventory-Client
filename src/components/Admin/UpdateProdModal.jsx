@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../Api/api';
 import './comp-specific.css';
+import NotificationCard from './NotificationCard';
 
 function UpdateProdModal({ onClose, onUpdate, prodData }) {
   const [formData, setFormData] = useState(prodData);
