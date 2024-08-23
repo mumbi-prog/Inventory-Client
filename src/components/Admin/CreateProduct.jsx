@@ -84,7 +84,7 @@ function CreateProduct() {
         try {
             const response = await api.post("/products", updatedProductData);
             if (response.status === 201) {
-                setSuccess("Product created successfully!");
+                setSuccess("Product created successfully.");
                 setProductDeets({
                     serial_number: '',
                     category: '',

@@ -55,7 +55,7 @@ function CreateUser() {
         try {
             const response = await api.post("/users", userDeets);
             if (response.status === 201) {
-                setSuccess("User created successfully");
+                setSuccess("User created successfully.");
                 setUserDeets({
                     first_name: '',
                     last_name: '',
