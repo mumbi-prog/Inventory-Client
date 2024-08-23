@@ -4,6 +4,7 @@ import './comp-specific.css';
 import UpdateProdModal from './UpdateProdModal.jsx';
 import { CiEdit } from 'react-icons/ci';
 import DeleteConfirmationModal from './DeleteConfirmationModal.jsx';
+import NotificationCard from './NotificationCard.jsx';
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FcNext, FcPrevious } from 'react-icons/fc';
 import { WiRefresh } from 'react-icons/wi';
@@ -172,21 +173,24 @@ function Dashboard() {
       });
   };
 
-  const confirmDeleteProduct = async (product) => {
-    try {
-      const response = await api.delete(`/products/${product.id}`);
-      if (response.status === 204) {
-        console.log("Deleted product successfully!");
-        setProducts((prevProducts) => prevProducts.filter((e) => e.id !== product.id));
-        setIsDeleteModalOpen(false);
-        setProdToDelete(null);
-      } else {
-        console.log('Unable to delete product');
-      }
-    } catch (error) {
-      console.error('Error occurred while deleting product', error);
+   const confirmDeleteProduct = async (product) => {
+  try {
+    const response = await api.delete(`/products/${product.id}`);
+    if (response.status === 204) {
+      console.log("Deleted product successfully!");
+      setProducts((prevProducts) => prevProducts.filter((e) => e.id !== product.id));
+      setSuccessMessage('Product deleted successfully');
+      setIsDeleteModalOpen(false);
+      setProdToDelete(null);
+      setTimeout(() => setSuccessMessage(''), 5000); 
+    } else {
+      console.log('Unable to delete product');
     }
+  } catch (error) {
+    console.error('Error occurred while deleting product', error);
   }
+};
+
 
   return (
     <div className='sect-container mt-[20px]'>
@@ -263,6 +267,8 @@ function Dashboard() {
       {isDeleteModalOpen && (
         <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteProduct(prodToDelete)} userData={prodToDelete} />
       )}
+
+      {successMessage && <NotificationCard message={successMessage} />}
 
       <div className="pagination flex justify-center items-center my-[5px]">
         <button
