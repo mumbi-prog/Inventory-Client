@@ -174,22 +174,22 @@ function Dashboard() {
   };
 
    const confirmDeleteProduct = async (product) => {
-  try {
-    const response = await api.delete(`/products/${product.id}`);
-    if (response.status === 204) {
-      console.log("Deleted product successfully!");
-      setProducts((prevProducts) => prevProducts.filter((e) => e.id !== product.id));
-      setSuccessMessage('Product deleted successfully');
-      setIsDeleteModalOpen(false);
-      setProdToDelete(null);
-      setTimeout(() => setSuccessMessage(''), 5000); 
-    } else {
-      console.log('Unable to delete product');
+    try {
+      const response = await api.delete(`/products/${product.id}`);
+      if (response.status === 204) {
+        console.log("Deleted product successfully!");
+        setProducts((prevProducts) => prevProducts.filter((e) => e.id !== product.id));
+        setSuccessMessage('Product deleted.');
+        setIsDeleteModalOpen(false);
+        setProdToDelete(null);
+        setTimeout(() => setSuccessMessage(''), 5000); 
+      } else {
+        console.log('Unable to delete product');
+      }
+    } catch (error) {
+      console.error('Error occurred while deleting product', error);
     }
-  } catch (error) {
-    console.error('Error occurred while deleting product', error);
-  }
-};
+  };
 
 
   return (
@@ -268,8 +268,6 @@ function Dashboard() {
         <DeleteConfirmationModal onCancel={closeDeleteModal} onConfirm={() => confirmDeleteProduct(prodToDelete)} userData={prodToDelete} />
       )}
 
-      {successMessage && <NotificationCard message={successMessage} />}
-
       <div className="pagination flex justify-center items-center my-[5px]">
         <button
           onClick={goToPreviousPage}
@@ -298,6 +296,7 @@ function Dashboard() {
           <FcNext />
         </button>
       </div>
+      {successMessage && <NotificationCard message={successMessage} />}
     </div>
   );
 }

@@ -15,7 +15,7 @@ function UpdateUserModal({ onClose, onUpdate, userData }) {
     });
   };
 
-  const CATEGORIES = ['Stores', 'IT', 'Maintenance', 'Operations', 'Drivers', 'Finance'];
+ const CATEGORIES = ['Stores', 'IT', 'Maintenance', 'Operations', 'Drivers', 'Finance', 'HSSE', 'HR'];
 
   const handleCategoryChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +41,7 @@ function UpdateUserModal({ onClose, onUpdate, userData }) {
 
       setTimeout(() => {
         onClose();
-      }, 1000);
+      }, 500);
     } catch (error) {
       setError('Error occurred while updating user');
     }
@@ -52,7 +52,7 @@ function UpdateUserModal({ onClose, onUpdate, userData }) {
       const timer = setTimeout(() => {
         setError('');
         setSuccess('');
-      }, 3000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [error, success]);
