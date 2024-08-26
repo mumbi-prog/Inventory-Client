@@ -16,7 +16,7 @@ function AdminLogin() {
     e.preventDefault();
 
     try {
-      await api.post('http://localhost:3000/login', {
+      await api.post('/login', {
         email,
         password
       });

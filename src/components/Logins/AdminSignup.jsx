@@ -24,7 +24,7 @@ function AdminSignup() {
     }
 
     try {
-      await api.post('http://localhost:3000/signup', {
+      await api.post('/signup', {
         admin: {
           first_name: firstName,
           last_name: lastName,
