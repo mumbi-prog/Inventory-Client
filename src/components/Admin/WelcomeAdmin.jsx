@@ -10,7 +10,7 @@ const WelcomeAdmin = () => {
   useEffect(() => {
     const fetchadminData = async () => {
       try {
-        const response = await api.get('http://localhost:3000/mysession');
+        const response = await api.get('/mysession');
 
         if (response.status === 200) { 
           setadminData(response.data);

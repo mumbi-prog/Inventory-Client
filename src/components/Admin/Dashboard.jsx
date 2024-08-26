@@ -28,7 +28,7 @@ function Dashboard() {
 
   const fetchUserName = async (userId) => {
     try {
-      const response = await api.get(`http://localhost:3000/users/${userId}`);
+      const response = await api.get(`/users/${userId}`);
       if (response.status === 200) {
         return `${response.data.first_name} ${response.data.last_name}`;
       }
@@ -41,7 +41,7 @@ function Dashboard() {
 
   const fetchData = useCallback(async () => {
     try {
-      const productResponse = await api.get("http://localhost:3000/products");
+      const productResponse = await api.get("/products");
       if (productResponse.status === 202) {
         const productsData = productResponse.data;
         setProducts(productsData);
@@ -77,7 +77,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchTotalUsers = async () => {
       try {
-        const response = await api.get("http://localhost:3000/users");
+        const response = await api.get("/users");
         if (response.status === 200) {
           setTotalUsers(response.data.length);
         } else {

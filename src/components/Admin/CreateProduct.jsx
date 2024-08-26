@@ -34,7 +34,7 @@ function CreateProduct() {
 
     const fetchUsers = async () => {
         try {
-            const response = await api.get("http://localhost:3000/users");
+            const response = await api.get("/users");
             if (response.status === 200) {
                 setUsers(response.data);
             } else {

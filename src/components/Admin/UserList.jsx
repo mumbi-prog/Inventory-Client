@@ -24,7 +24,7 @@ function UserList() {
 
     const fetchUserList = async () => {
     try {
-        const response = await api.get("http://localhost:3000/users");
+        const response = await api.get("/users");
         if (response.status === 200) {
             if (Array.isArray(response.data)) {
                 const sortedUsers = response.data.sort((a, b) => {
