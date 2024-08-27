@@ -28,7 +28,7 @@ function Sidebar({ children, setSelectedOption }) {
 
   const handleLogout = async () => {
     try {
-      const response = await api.delete('http://localhost:3000/logout');
+      const response = await api.delete('/logout');
       if (response.status === 204) {
         navigate('/login')
       } else {
