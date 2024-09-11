@@ -6,20 +6,20 @@
 // });
 
 // export default api;
-
 import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'https://inventory-api-77ys.onrender.com',
-  withCredentials: true,
+  withCredentials: true, 
 });
 
-api.interceptors.request.use((config) => {
-  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  if (csrfToken) {
-    config.headers['X-CSRF-Token'] = csrfToken;
+
+api.interceptors.response.use(
+  response => response,
+  error => {
+    console.error('API Error:', error.response?.data || error.message);
+    return Promise.reject(error);
   }
-  return config;
-});
+);
 
 export default api;
